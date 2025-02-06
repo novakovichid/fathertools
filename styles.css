@@ -1,0 +1,80 @@
+/* Базовые стили для мобильных устройств */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3e5f5; /* Фиалковый фон */
+    color: #333;
+  }
+  
+  .container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    padding-bottom: 100px; /* Отступ для адресной строки Яндекс.Браузера */
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #7b1fa2; /* Темно-фиалковый */
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .section {
+    margin-bottom: 20px;
+  }
+  
+  input[type="date"],
+  input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #7b1fa2; /* Темно-фиалковый */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #6a1b9a; /* Еще темнее фиалковый */
+  }
+  
+  p {
+    margin: 5px 0;
+    font-size: 16px;
+  }
+  
+  strong {
+    color: #7b1fa2; /* Темно-фиалковый */
+  }
+  
+  /* Медиа-запросы для больших экранов */
+  @media (min-width: 768px) {
+    .container {
+      max-width: 600px;
+    }
+  
+    h1 {
+      font-size: 32px;
+    }
+  
+    input[type="date"],
+    input[type="number"],
+    button {
+      width: auto;
+    }
+  }
