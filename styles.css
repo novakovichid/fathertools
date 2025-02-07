@@ -1,17 +1,17 @@
-/* Базовые стили для мобильных устройств */
+/* Базовые стили */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f3e5f5; /* Фиалковый фон */
   color: #333;
-  box-sizing: border-box; /* Учитываем padding и border в ширине элементов */
+  box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-  box-sizing: inherit; /* Наследуем box-sizing */
+  box-sizing: inherit;
 }
 
 .container {
@@ -22,7 +22,7 @@ body {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden; /* Убираем вылезание содержимого за границы */
+  overflow: hidden;
 }
 
 h1 {
@@ -58,6 +58,10 @@ button {
   margin: 10px 5vw; /* Горизонтальные отступы по 5vw */
 }
 
+button:hover {
+  background-color: #6a1b9a; /* Еще темнее фиалковый */
+}
+
 p {
   margin: 5px 0;
   font-size: 16px;
@@ -67,55 +71,31 @@ strong {
   color: #7b1fa2; /* Темно-фиалковый */
 }
 
-img {
-  max-width: 100%; /* Изображение не выходит за пределы контейнера */
-  height: auto;
-  border-radius: 8px;
-  margin-top: 10px;
+/* Стили для главного меню */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Медиа-запросы для больших экранов */
-@media (min-width: 768px) {
-  .container {
-    max-width: 600px;
-  }
-
-  h1 {
-    font-size: 32px;
-  }
-
-  input[type="date"],
-  input[type="number"],
-  button {
-    width: auto;
-    max-width: 100%; /* Ограничиваем максимальную ширину */
-    margin: 10px auto; /* Центрируем элементы */
-  }
-}
-img {
-  max-width: 100%; /* Изображение не выходит за пределы контейнера */
-  height: auto;
-  border-radius: 8px;
-  margin-top: 10px;
-  object-fit: cover; /* Сохраняем пропорции изображения */
+.menu button {
+  width: 100%;
+  padding: 15px;
+  font-size: 18px;
 }
 
-img[src=""] {
-  display: none; /* Скрываем изображение, если src пустой */
-}
-/* Анимация появления рекомендаций */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.menu button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-#nutritionTips,
-#nutritionImage {
-  animation: fadeIn 0.5s ease-in-out;
+/* Кнопка возврата */
+.back-button {
+  background-color: #ffeb3b; /* Желтый цвет */
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  background-color: #fdd835; /* Темнее желтый */
 }
