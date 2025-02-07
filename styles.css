@@ -92,3 +92,14 @@ img {
     margin: 10px auto; /* Центрируем элементы */
   }
 }
+img {
+  max-width: 100%; /* Изображение не выходит за пределы контейнера */
+  height: auto;
+  border-radius: 8px;
+  margin-top: 10px;
+  object-fit: cover; /* Сохраняем пропорции изображения */
+}
+
+img[src=""] {
+  display: none; /* Скрываем изображение, если src пустой */
+}
