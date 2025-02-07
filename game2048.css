@@ -7,7 +7,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 60px); /* Фиксированный размер ячеек */
   grid-gap: 10px;
   background-color: #bbada0;
   padding: 10px;
@@ -16,7 +16,7 @@
   height: 300px;
 }
 
-.grid div {
+.grid div.cell {
   width: 60px; /* Фиксированная ширина */
   height: 60px; /* Фиксированная высота */
   background-color: #cdc1b4;
