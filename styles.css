@@ -132,17 +132,17 @@ strong {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
-  margin-bottom: 10px;
+  padding: 10px; /* Уменьшаем внутренние отступы */
+  margin-bottom: 8px; /* Уменьшаем расстояние между карточками */
   background-color: #ffffff; /* Белый фон */
-  border-radius: 12px;
+  border-radius: 8px; /* Уменьшаем радиус скругления */
   border: 1px solid #ddd;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Уменьшаем тень */
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #shoppingList li:hover {
-  transform: translateY(-2px); /* Легкий эффект при наведении */
+  transform: translateY(-1px); /* Легкий эффект при наведении */
 }
 
 #shoppingList li.completed {
@@ -158,10 +158,10 @@ strong {
 .icon-button {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: 18px; /* Уменьшаем размер иконок */
   cursor: pointer;
   color: #7b1fa2; /* Фиалковый цвет */
-  margin-left: 10px;
+  margin-left: 8px; /* Уменьшаем расстояние между иконками */
   transition: color 0.3s ease;
 }
 
@@ -188,5 +188,6 @@ strong {
 /* Текст товара */
 .item-name {
   flex-grow: 1;
-  font-size: 16px;
+  font-size: 14px; /* Уменьшаем размер текста */
+  line-height: 1.4; /* Улучшаем читаемость */
 }
