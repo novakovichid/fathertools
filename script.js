@@ -17,20 +17,20 @@ document.addEventListener('DOMContentLoaded', () => {
     let startDate = localStorage.getItem('startDate') || null;
   
     // Статические данные для рекомендаций по питанию
-    const nutritionTipsData = {
-      1: {
-        tip: "Убедитесь, что ваш рацион богат фолиевой кислотой. Ешьте больше зелени и орехов.",
-        image: "https://via.placeholder.com/300x200?text=Week+1"
-      },
-      2: {
-        tip: "Добавьте в меню продукты, богатые железом, такие как мясо, шпинат и бобовые.",
-        image: "https://via.placeholder.com/300x200?text=Week+2"
-      },
-      default: {
-        tip: "Следите за сбалансированным питанием и регулярно консультируйтесь с врачом.",
-        image: "https://via.placeholder.com/300x200?text=Default"
-      }
-    };
+const nutritionTipsData = {
+  1: {
+    tip: "Убедитесь, что ваш рацион богат фолиевой кислотой. Ешьте больше зелени и орехов.",
+    image: "https://via.placeholder.com/300x200?text=Week+1"
+  },
+  2: {
+    tip: "Добавьте в меню продукты, богатые железом, такие как мясо, шпинат и бобовые.",
+    image: "https://via.placeholder.com/300x200?text=Week+2"
+  },
+  default: {
+    tip: "Следите за сбалансированным питанием и регулярно консультируйтесь с врачом.",
+    image: "https://via.placeholder.com/300x200?text=Default"
+  }
+};
   
     // Сохранение даты начала беременности
     saveStartDateButton.addEventListener('click', () => {
@@ -68,12 +68,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   
     // Обновление рекомендаций по питанию
-    function updateNutritionTips(week) {
-      const tipData = nutritionTipsData[week] || nutritionTipsData.default;
-      nutritionTipsElement.textContent = tipData.tip;
-      nutritionImageElement.src = tipData.image;
-      nutritionImageElement.alt = `Рекомендации для ${week}-й недели`;
-    }
+function updateNutritionTips(week) {
+  const tipData = nutritionTipsData[week] || nutritionTipsData.default;
+  const nutritionImageElement = document.getElementById('nutritionImage');
+
+  // Устанавливаем текст рекомендации
+  document.getElementById('nutritionTips').textContent = tipData.tip;
+
+  // Устанавливаем изображение
+  nutritionImageElement.src = tipData.image;
+
+  // Добавляем резервное изображение
+  nutritionImageElement.onerror = () => {
+    nutritionImageElement.src = "https://via.placeholder.com/300x200?text=Error"; // Резервное изображение
+  };
+}
   
     // Расчет срока на указанную дату
     calculateForDateButton.addEventListener('click', () => {
