@@ -3,58 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Отслеживание беременности</title>
+  <title>Главное меню</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>Отслеживание беременности</h1>
-
-    <!-- Форма для ввода даты начала беременности -->
-    <div class="section">
-      <h2>Введите дату начала беременности:</h2>
-      <input type="date" id="startDateInput">
-      <button id="saveStartDate">Сохранить дату</button>
-    </div>
-
-    <!-- Блок с расчетами -->
-    <div class="section">
-      <h2>Расчеты:</h2>
-      <p><strong>Предполагаемая дата родов (ПДР):</strong> <span id="pdr"></span></p>
-      <p><strong>Текущая неделя беременности:</strong> <span id="currentWeek"></span></p>
-      <p><strong>Точный срок беременности:</strong> <span id="exactDuration"></span></p>
-    </div>
-
-    <!-- Расчет по указанной дате -->
-    <div class="section">
-      <h2>Укажите дату для расчета срока:</h2>
-      <input type="date" id="customDateInput">
-      <button id="calculateForDate">Рассчитать</button>
-      <p><strong>Срок на указанную дату:</strong> <span id="customDateResult"></span></p>
-    </div>
-
-    <!-- Расчет даты по указанному сроку -->
-    <div class="section">
-      <h2>Укажите срок для расчета даты:</h2>
-      <input type="number" id="customWeekInput" placeholder="Недели">
-      <input type="number" id="customDayInput" placeholder="Дни (необязательно)">
-      <button id="calculateForWeeks">Рассчитать</button>
-      <p><strong>Дата наступления указанного срока:</strong> <span id="customWeekResult"></span></p>
-    </div>
-
-    <!-- Рекомендации по питанию -->
-    <div class="section">
-  <h2>Рекомендации по питанию на текущий день:</h2>
-  <p id="nutritionTips">Здесь будут отображаться рекомендации по питанию.</p>
-</div>
-
-    <!-- Плейсхолдер для продвинутых функций -->
-    <div class="section">
-      <h2>Продвинутые функции (в разработке):</h2>
-      <p>Здесь скоро появятся дополнительные возможности!</p>
+    <h1>Главное меню</h1>
+    <div class="menu">
+      <button onclick="location.href='tracker.html'">Трекер беременности</button>
+      <button disabled>Другие функции (в разработке)</button>
     </div>
   </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
