@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     for (let row = 0; row < 4; row++) {
       for (let col = 0; col < 4; col++) {
         const cell = document.createElement('div');
+        cell.classList.add('cell'); // Добавляем класс для стилизации
         if (board[row][col]) {
           cell.textContent = board[row][col];
           cell.setAttribute('data-value', board[row][col]);
@@ -144,6 +145,45 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  // Обработка свайпов
+  let startX = 0;
+  let startY = 0;
+
+  function handleTouchStart(event) {
+    const touch = event.touches[0];
+    startX = touch.clientX;
+    startY = touch.clientY;
+  }
+
+  function handleTouchEnd(event) {
+    const touch = event.changedTouches[0];
+    const diffX = touch.clientX - startX;
+    const diffY = touch.clientY - startY;
+
+    // Определяем направление свайпа
+    if (Math.abs(diffX) > Math.abs(diffY)) {
+      if (diffX > 50) {
+        moveRight(); // Свайп вправо
+      } else if (diffX < -50) {
+        moveLeft(); // Свайп влево
+      }
+    } else {
+      if (diffY > 50) {
+        moveDown(); // Свайп вниз
+      } else if (diffY < -50) {
+        moveUp(); // Свайп вверх
+      }
+    }
+
+    // Проверяем, изменилась ли доска
+    if (checkBoardChanged()) {
+      addRandomTile();
+      renderBoard();
+      scoreElement.textContent = score;
+      checkGameOver();
+    }
+  }
+
   // Проверка завершения игры
   function checkGameOver() {
     for (let row = 0; row < 4; row++) {
@@ -162,10 +202,24 @@ document.addEventListener('DOMContentLoaded', () => {
     alert('Игра окончена!');
   }
 
+  // Проверка, изменилась ли доска
+  function checkBoardChanged() {
+    for (let row = 0; row < 4; row++) {
+      for (let col = 0; col < 4; col++) {
+        if (board[row][col] !== previousBoard[row][col]) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
   // Перезапуск игры
   restartButton.addEventListener('click', initGame);
 
   // Запуск игры
   window.addEventListener('keydown', handleKeyPress);
+  window.addEventListener('touchstart', handleTouchStart);
+  window.addEventListener('touchend', handleTouchEnd);
   initGame();
 });
