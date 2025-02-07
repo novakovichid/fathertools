@@ -36,66 +36,42 @@ h1 {
   margin-bottom: 20px;
 }
 
-input[type="date"],
-input[type="number"] {
-  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
-  padding: 12px;
-  margin: 0 5vw 10px; /* Горизонтальные отступы по 5vw */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-button {
-  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
-  padding: 12px;
-  background-color: #7b1fa2; /* Темно-фиалковый */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 10px 5vw; /* Горизонтальные отступы по 5vw */
-}
-
-button:hover {
-  background-color: #6a1b9a; /* Еще темнее фиалковый */
-}
-
-p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-strong {
-  color: #7b1fa2; /* Темно-фиалковый */
-}
-
 /* Стили для главного меню */
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px; /* Расстояние между кнопками */
+  align-items: center; /* Центрирование кнопок */
+  margin-top: 20px;
 }
 
 .menu button {
-  width: 100%;
+  width: 80%; /* Кнопки занимают 80% ширины контейнера */
+  max-width: 400px; /* Ограничиваем максимальную ширину */
   padding: 15px;
   font-size: 18px;
+  text-align: center;
+  background-color: #7b1fa2; /* Темно-фиалковый */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu button:hover {
+  background-color: #6a1b9a; /* Еще темнее фиалковый */
 }
 
 .menu button:disabled {
-  background-color: #ccc;
+  background-color: #ccc; /* Серый цвет для недоступных кнопок */
   cursor: not-allowed;
 }
 
-/* Кнопка возврата */
-.back-button {
-  background-color: #ffeb3b; /* Желтый цвет */
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.back-button:hover {
-  background-color: #fdd835; /* Темнее желтый */
+/* Адаптивность для маленьких экранов */
+@media (max-width: 768px) {
+  .menu button {
+    width: 90%; /* Увеличиваем ширину кнопок на маленьких экранах */
+    font-size: 16px;
+  }
 }
