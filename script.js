@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// Инициализация трекера беременности
 function initTracker() {
   const startDateInput = document.getElementById('startDateInput');
   const saveStartDateButton = document.getElementById('saveStartDate');
