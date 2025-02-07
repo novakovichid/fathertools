@@ -129,4 +129,103 @@ function initTracker() {
     startDateInput.value = startDate;
     updateCalculations();
   }
+}document.addEventListener('DOMContentLoaded', () => {
+  // Проверяем, на какой странице мы находимся
+  if (window.location.pathname.endsWith('checklist.html')) {
+    initChecklist();
+  } else if (window.location.pathname.endsWith('tracker.html')) {
+    initTracker();
+  }
+});
+
+function initChecklist() {
+  const newItemInput = document.getElementById('newItemInput');
+  const addItemButton = document.getElementById('addItemButton');
+  const shoppingList = document.getElementById('shoppingList');
+
+  let items = [];
+
+  // Загрузка данных из JSON-файла
+  fetch('shopping-list.json')
+    .then(response => response.json())
+    .then(data => {
+      items = data;
+      renderShoppingList();
+    })
+    .catch(error => {
+      console.error('Ошибка загрузки списка покупок:', error);
+      alert('Не удалось загрузить список покупок.');
+    });
+
+  // Функция отображения списка
+  function renderShoppingList() {
+    shoppingList.innerHTML = '';
+    items.forEach((item, index) => {
+      const li = document.createElement('li');
+      li.className = item.completed ? 'completed' : '';
+
+      // Текст товара
+      const itemName = document.createElement('span');
+      itemName.textContent = item.name;
+
+      // Кнопки управления
+      const controls = document.createElement('div');
+      controls.className = 'controls';
+
+      const markButton = document.createElement('button');
+      markButton.textContent = item.completed ? 'Отменить' : 'Куплено';
+      markButton.className = 'mark-button';
+      markButton.onclick = () => toggleItem(index);
+
+      const deleteButton = document.createElement('button');
+      deleteButton.textContent = 'Удалить';
+      deleteButton.className = 'delete-button';
+      deleteButton.onclick = () => deleteItem(index);
+
+      controls.appendChild(markButton);
+      controls.appendChild(deleteButton);
+
+      li.appendChild(itemName);
+      li.appendChild(controls);
+      shoppingList.appendChild(li);
+    });
+  }
+
+  // Добавление нового товара
+  addItemButton.addEventListener('click', () => {
+    const newItemName = newItemInput.value.trim();
+    if (newItemName) {
+      items.push({ name: newItemName, completed: false });
+      newItemInput.value = '';
+      saveItems();
+      renderShoppingList();
+    }
+  });
+
+  // Переключение статуса товара
+  function toggleItem(index) {
+    items[index].completed = !items[index].completed;
+    saveItems();
+    renderShoppingList();
+  }
+
+  // Удаление товара
+  function deleteItem(index) {
+    items.splice(index, 1);
+    saveItems();
+    renderShoppingList();
+  }
+
+  // Сохранение данных в JSON-файл
+  function saveItems() {
+    fetch('shopping-list.json', {
+      method: 'PUT', // Или POST, если сервер поддерживает
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(items)
+    })
+      .then(() => console.log('Список сохранен'))
+      .catch(error => console.error('Ошибка сохранения списка:', error));
+  }
 }
