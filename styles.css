@@ -38,16 +38,16 @@ h1 {
 
 input[type="date"],
 input[type="number"] {
-  width: calc(100% - 22px); /* Учитываем padding и border */
+  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
   padding: 12px;
-  margin-bottom: 10px;
+  margin: 0 5vw 10px; /* Горизонтальные отступы по 5vw */
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 16px;
 }
 
 button {
-  width: calc(100% - 22px); /* Учитываем padding и border */
+  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
   padding: 12px;
   background-color: #7b1fa2; /* Темно-фиалковый */
   color: white;
@@ -55,11 +55,7 @@ button {
   border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
-  margin-top: 10px; /* Добавляем отступ сверху */
-}
-
-button:hover {
-  background-color: #6a1b9a; /* Еще темнее фиалковый */
+  margin: 10px 5vw; /* Горизонтальные отступы по 5vw */
 }
 
 p {
@@ -93,5 +89,6 @@ img {
   button {
     width: auto;
     max-width: 100%; /* Ограничиваем максимальную ширину */
+    margin: 10px auto; /* Центрируем элементы */
   }
 }
