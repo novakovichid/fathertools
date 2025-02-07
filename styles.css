@@ -122,18 +122,71 @@ strong {
   background-color: #fdd835; /* Темнее желтый */
 }
 
-/* Адаптивность для маленьких экранов */
-@media (max-width: 768px) {
-  .menu button {
-    width: 90%; /* Увеличиваем ширину кнопок на маленьких экранах */
-    font-size: 16px;
-  }
+/* Стили для карточек товаров */
+#shoppingList {
+  list-style-type: none;
+  padding: 0;
+}
 
-  input[type="date"],
-  input[type="number"],
-  input[type="text"],
-  button {
-    width: 90%; /* Увеличиваем ширину элементов на маленьких экранах */
-    margin: 10px 5%; /* Горизонтальные отступы по 5% */
-  }
+#shoppingList li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #ffffff; /* Белый фон */
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#shoppingList li:hover {
+  transform: translateY(-2px); /* Легкий эффект при наведении */
+}
+
+#shoppingList li.completed {
+  background-color: #e8f5e9; /* Зеленоватый фон для купленных товаров */
+  color: #4caf50; /* Зеленый текст */
+}
+
+#shoppingList li.completed .item-name {
+  text-decoration: line-through;
+}
+
+/* Иконки */
+.icon-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: #7b1fa2; /* Фиалковый цвет */
+  margin-left: 10px;
+  transition: color 0.3s ease;
+}
+
+.icon-button:hover {
+  color: #6a1b9a; /* Темнее фиалковый */
+}
+
+.icon-button.mark {
+  color: #4caf50; /* Зеленый для "Куплено" */
+}
+
+.icon-button.mark:hover {
+  color: #45a049; /* Темнее зеленый */
+}
+
+.icon-button.delete {
+  color: #f44336; /* Красный для "Удалить" */
+}
+
+.icon-button.delete:hover {
+  color: #e53935; /* Темнее красный */
+}
+
+/* Текст товара */
+.item-name {
+  flex-grow: 1;
+  font-size: 16px;
 }
