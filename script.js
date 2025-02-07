@@ -1,23 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
   // Проверяем, на какой странице мы находимся
-  if (window.location.pathname.endsWith('tracker.html')) {
+  if (window.location.pathname.endsWith('checklist.html')) {
+    initChecklist();
+  } else if (window.location.pathname.endsWith('tracker.html')) {
     initTracker();
   }
 });
 
+// Инициализация трекера беременности
 function initTracker() {
   const startDateInput = document.getElementById('startDateInput');
   const saveStartDateButton = document.getElementById('saveStartDate');
   const pdrElement = document.getElementById('pdr');
   const currentWeekElement = document.getElementById('currentWeek');
   const exactDurationElement = document.getElementById('exactDuration');
-  const customDateInput = document.getElementById('customDateInput');
-  const calculateForDateButton = document.getElementById('calculateForDate');
-  const customDateResultElement = document.getElementById('customDateResult');
-  const customWeekInput = document.getElementById('customWeekInput');
-  const customDayInput = document.getElementById('customDayInput');
-  const calculateForWeeksButton = document.getElementById('calculateForWeeks');
-  const customWeekResultElement = document.getElementById('customWeekResult');
   const nutritionTipsElement = document.getElementById('nutritionTips');
 
   let startDate = localStorage.getItem('startDate') || null;
@@ -83,39 +79,6 @@ function initTracker() {
     nutritionTipsElement.textContent = tipData.tip;
   }
 
-  // Расчет срока на указанную дату
-  calculateForDateButton.addEventListener('click', () => {
-    const customDate = customDateInput.value;
-    if (!customDate || !startDate) {
-      alert('Пожалуйста, укажите дату начала беременности и дату для расчета.');
-      return;
-    }
-
-    const date = new Date(customDate);
-    const start = new Date(startDate);
-    const diffTime = Math.abs(date - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    const weeks = Math.floor(diffDays / 7) + 1; // Учитываем первую неделю
-    const days = diffDays % 7;
-
-    customDateResultElement.textContent = `${weeks} неделя (${weeks - 1} недель ${days} дней)`;
-  });
-
-  // Расчет даты по указанному сроку
-  calculateForWeeksButton.addEventListener('click', () => {
-    const weeks = parseInt(customWeekInput.value, 10);
-    const days = parseInt(customDayInput.value, 10) || 0; // Дни необязательны
-
-    if (!startDate || isNaN(weeks)) {
-      alert('Пожалуйста, укажите дату начала беременности и срок.');
-      return;
-    }
-
-    const start = new Date(startDate);
-    const targetDate = new Date(start.getTime() + ((weeks - 1) * 7 + days) * 24 * 60 * 60 * 1000);
-    customWeekResultElement.textContent = formatDate(targetDate);
-  });
-
   // Форматирование даты
   function formatDate(date) {
     const day = String(date.getDate()).padStart(2, '0');
@@ -129,15 +92,9 @@ function initTracker() {
     startDateInput.value = startDate;
     updateCalculations();
   }
-}document.addEventListener('DOMContentLoaded', () => {
-  // Проверяем, на какой странице мы находимся
-  if (window.location.pathname.endsWith('checklist.html')) {
-    initChecklist();
-  } else if (window.location.pathname.endsWith('tracker.html')) {
-    initTracker();
-  }
-});
+}
 
+// Инициализация чек-листа покупок
 function initChecklist() {
   const newItemInput = document.getElementById('newItemInput');
   const addItemButton = document.getElementById('addItemButton');
@@ -167,19 +124,22 @@ function initChecklist() {
       // Текст товара
       const itemName = document.createElement('span');
       itemName.textContent = item.name;
+      itemName.className = 'item-name';
 
-      // Кнопки управления
+      // Контейнер для иконок
       const controls = document.createElement('div');
       controls.className = 'controls';
 
+      // Иконка "Куплено/Отменить"
       const markButton = document.createElement('button');
-      markButton.textContent = item.completed ? 'Отменить' : 'Куплено';
-      markButton.className = 'mark-button';
+      markButton.className = 'icon-button mark';
+      markButton.innerHTML = item.completed ? '&#10004;' : '&#9998;'; // Галочка или карандаш
       markButton.onclick = () => toggleItem(index);
 
+      // Иконка "Удалить"
       const deleteButton = document.createElement('button');
-      deleteButton.textContent = 'Удалить';
-      deleteButton.className = 'delete-button';
+      deleteButton.className = 'icon-button delete';
+      deleteButton.innerHTML = '&#128465;'; // Корзина
       deleteButton.onclick = () => deleteItem(index);
 
       controls.appendChild(markButton);
