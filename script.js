@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const currentWeekElement = document.getElementById('currentWeek');
   const exactDurationElement = document.getElementById('exactDuration');
   const nutritionTipsElement = document.getElementById('nutritionTips');
-  const nutritionImageElement = document.getElementById('nutritionImage');
 
   let startDate = localStorage.getItem('startDate') || null;
 
@@ -64,12 +63,10 @@ document.addEventListener('DOMContentLoaded', () => {
   // Обновление рекомендаций по питанию
   function updateNutritionTips(day) {
     const tipData = nutritionTipsData[day] || {
-      tip: 'Рекомендации не найдены.',
-      image: 'https://via.placeholder.com/300x200?text=No+Data'
+      tip: 'Рекомендации не найдены.'
     };
 
     nutritionTipsElement.textContent = tipData.tip;
-    nutritionImageElement.src = tipData.image;
   }
 
   // Форматирование даты
