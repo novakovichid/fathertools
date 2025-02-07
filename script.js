@@ -9,6 +9,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let startDate = localStorage.getItem('startDate') || null;
 
+  // Загрузка данных из JSON-файла
+  let nutritionTipsData = {};
+  fetch('nutrition-tips.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Ошибка загрузки данных');
+      return response.json();
+    })
+    .then(data => {
+      nutritionTipsData = data;
+      if (startDate) updateCalculations();
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      alert('Не удалось загрузить рекомендации по питанию.');
+    });
+
   // Сохранение даты начала беременности
   saveStartDateButton.addEventListener('click', () => {
     startDate = startDateInput.value;
@@ -41,33 +57,19 @@ document.addEventListener('DOMContentLoaded', () => {
     exactDurationElement.textContent = `${weeks - 1} недель ${days} дней`;
 
     // Загрузка рекомендаций по питанию
-    fetchNutritionTips(weeks);
+    const dayOfMonth = (diffDays % 31) + 1; // Текущий день месяца (1–31)
+    updateNutritionTips(dayOfMonth);
   }
 
-  // Загрузка рекомендаций по питанию из API "Едим Дома"
-  async function fetchNutritionTips(week) {
-    const query = `беременность+неделя+${week}`; // Ключевые слова для поиска
-    const url = `https://api.edimdoma.ru/v2/recipes?query=${encodeURIComponent(query)}`;
+  // Обновление рекомендаций по питанию
+  function updateNutritionTips(day) {
+    const tipData = nutritionTipsData[day] || {
+      tip: 'Рекомендации не найдены.',
+      image: 'https://via.placeholder.com/300x200?text=No+Data'
+    };
 
-    try {
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Ошибка загрузки данных');
-      const data = await response.json();
-
-      // Извлекаем первый рецепт из результатов
-      const recipe = data.recipes[0];
-      if (recipe) {
-        nutritionTipsElement.textContent = `Рекомендуем: ${recipe.name}`;
-        nutritionImageElement.src = recipe.image_url || 'https://via.placeholder.com/300x200?text=No+Image';
-      } else {
-        nutritionTipsElement.textContent = 'Рекомендации не найдены. Попробуйте другую неделю.';
-        nutritionImageElement.src = 'https://via.placeholder.com/300x200?text=No+Data';
-      }
-    } catch (error) {
-      console.error('Ошибка:', error);
-      nutritionTipsElement.textContent = 'Не удалось загрузить рекомендации. Пожалуйста, попробуйте позже.';
-      nutritionImageElement.src = 'https://via.placeholder.com/300x200?text=Error';
-    }
+    nutritionTipsElement.textContent = tipData.tip;
+    nutritionImageElement.src = tipData.image;
   }
 
   // Форматирование даты
