@@ -17,6 +17,8 @@
 }
 
 .grid div {
+  width: 60px; /* Фиксированная ширина */
+  height: 60px; /* Фиксированная высота */
   background-color: #cdc1b4;
   border-radius: 5px;
   display: flex;
