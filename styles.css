@@ -209,3 +209,11 @@ strong {
   font-size: 14px;
   line-height: 1.5;
 }
+
+#childInfo p,
+#motherInfo p,
+#tips p {
+  margin: 5px 0;
+  font-size: 14px;
+  line-height: 1.5;
+}
