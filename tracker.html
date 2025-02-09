@@ -10,30 +10,45 @@
   <div class="container">
     <h1>Трекер беременности</h1>
 
-    <!-- Ввод даты начала беременности -->
-    <label for="startDateInput">Введите дату начала беременности:</label>
-    <input type="date" id="startDateInput">
-    <button id="saveStartDate">Сохранить дату</button>
+    <!-- Кнопка возврата в главное меню -->
+    <button class="back-button" onclick="location.href='index.html'">← Назад в меню</button>
 
-    <!-- Расчеты -->
-    <h2>Расчеты:</h2>
-    <p><strong>Предполагаемая дата родов (ПДР):</strong> <span id="pdr"></span></p>
-    <p><strong>Текущая неделя беременности:</strong> <span id="currentWeek"></span></p>
-    <p><strong>Точный срок беременности:</strong> <span id="exactDuration"></span></p>
+    <!-- Форма для ввода даты начала беременности -->
+    <div class="section">
+      <h2>Введите дату начала беременности:</h2>
+      <input type="date" id="startDateInput">
+      <button id="saveStartDate">Сохранить дату</button>
+    </div>
 
-    <!-- Информация о текущей неделе -->
-    <h2 id="weekHeader">Информация о текущей неделе</h2>
-    <div>
-      <h3>ЧТО ПРОИСХОДИТ С РЕБЕНКОМ</h3>
-      <div id="childInfo"></div>
+    <!-- Блок с расчетами -->
+    <div class="section">
+      <h2>Расчеты:</h2>
+      <p><strong>Предполагаемая дата родов (ПДР):</strong> <span id="pdr"></span></p>
+      <p><strong>Текущая неделя беременности:</strong> <span id="currentWeek"></span></p>
+      <p><strong>Точный срок беременности:</strong> <span id="exactDuration"></span></p>
     </div>
-    <div>
-      <h3>ЧТО ПРОИСХОДИТ С МАМОЙ</h3>
-      <div id="motherInfo"></div>
+
+    <!-- Расчет по указанной дате -->
+    <div class="section">
+      <h2>Укажите дату для расчета срока:</h2>
+      <input type="date" id="customDateInput">
+      <button id="calculateForDate">Рассчитать</button>
+      <p><strong>Срок на указанную дату:</strong> <span id="customDateResult"></span></p>
     </div>
-    <div>
-      <h3>НЕ ЗАБЫТЬ</h3>
-      <div id="tips"></div>
+
+    <!-- Расчет даты по указанному сроку -->
+    <div class="section">
+      <h2>Укажите срок для расчета даты:</h2>
+      <input type="number" id="customWeekInput" placeholder="Недели">
+      <input type="number" id="customDayInput" placeholder="Дни (необязательно)">
+      <button id="calculateForWeeks">Рассчитать</button>
+      <p><strong>Дата наступления указанного срока:</strong> <span id="customWeekResult"></span></p>
+    </div>
+
+    <!-- Рекомендации по питанию -->
+    <div class="section">
+      <h2>Рекомендации по питанию на текущий день:</h2>
+      <p id="nutritionTips">Здесь будут отображаться рекомендации по питанию.</p>
     </div>
   </div>
 
