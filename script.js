@@ -76,37 +76,35 @@ function initTracker() {
   }
 
   function updateWeekTips(week) {
-  const weekData = window.pregnancyWeeksData?.[week];
-  if (!weekData) {
-    console.warn(`Данные для недели ${week} не найдены.`);
-    weekTipsElement.innerHTML = '<p>Советы для этой недели недоступны.</p>';
-    return;
+    const weekData = window.pregnancyWeeksData?.[week];
+    if (!weekData) {
+      console.warn(`Данные для недели ${week} не найдены.`);
+      weekTipsElement.innerHTML = '<p>Советы для этой недели недоступны.</p>';
+      return;
+    }
+
+    const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
+    const motherInfo = weekData.mother.map(item => `<li>${item}</li>`).join('');
+    const tipsInfo = weekData.tips.map(item => `<li>${item}</li>`).join('');
+
+    weekTipsElement.innerHTML = `
+      <h3>Развитие ребенка:</h3>
+      <ul>${childInfo}</ul>
+      <h3>Изменения у матери:</h3>
+      <ul>${motherInfo}</ul>
+      <h3>Советы:</h3>
+      <ul>${tipsInfo}</ul>
+    `;
+
+    // Обновляем дополнительные элементы, если они существуют
+    const childTipsElement = document.getElementById('childTips');
+    const motherTipsElement = document.getElementById('motherTips');
+    const generalTipsElement = document.getElementById('generalTips');
+
+    if (childTipsElement) childTipsElement.innerHTML = childInfo || '<li>Информация отсутствует.</li>';
+    if (motherTipsElement) motherTipsElement.innerHTML = motherInfo || '<li>Информация отсутствует.</li>';
+    if (generalTipsElement) generalTipsElement.innerHTML = tipsInfo || '<li>Советы отсутствуют.</li>';
   }
-
-  const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
-  const motherInfo = weekData.mother.map(item => `<li>${item}</li>`).join('');
-  const tipsInfo = weekData.tips.map(item => `<li>${item}</li>`).join('');
-
-  weekTipsElement.innerHTML = `
-    <h3>Развитие ребенка:</h3>
-    <ul>${childInfo}</ul>
-    <h3>Изменения у матери:</h3>
-    <ul>${motherInfo}</ul>
-    <h3>Советы:</h3>
-    <ul>${tipsInfo}</ul>
-  `;
-}
-
-  // Форматирование данных
-  const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
-  const motherInfo = weekData.mother.map(item => `<li>${item}</li>`).join('');
-  const tipsInfo = weekData.tips.map(item => `<li>${item}</li>`).join('');
-
-  // Вставка данных в DOM
-  document.getElementById('childTips').innerHTML = childInfo || '<li>Информация отсутствует.</li>';
-  document.getElementById('motherTips').innerHTML = motherInfo || '<li>Информация отсутствует.</li>';
-  document.getElementById('generalTips').innerHTML = tipsInfo || '<li>Советы отсутствуют.</li>';
-}
 
   calculateForDateButton.addEventListener('click', () => {
     const customDate = customDateInput.value;
