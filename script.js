@@ -29,15 +29,21 @@ function initTracker() {
 
   // Загрузка данных о неделях беременности
   fetch('pregnancy_weeks.json')
-    .then(response => response.json())
-    .then(data => {
-      window.pregnancyWeeksData = data;
-      if (startDate) updateCalculations();
-    })
-    .catch(error => {
-      console.error('Ошибка:', error);
-      alert('Не удалось загрузить данные о неделях беременности.');
-    });
+  .then(response => {
+    if (!response.ok) {
+      throw new Error(`Ошибка загрузки данных: ${response.status}`);
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log('Данные успешно загружены:', data);
+    window.pregnancyWeeksData = data;
+    if (startDate) updateCalculations();
+  })
+  .catch(error => {
+    console.error('Ошибка:', error);
+    alert('Не удалось загрузить данные о неделях беременности.');
+  });
 
   saveStartDateButton.addEventListener('click', () => {
     startDate = startDateInput.value;
@@ -70,11 +76,26 @@ function initTracker() {
   }
 
   function updateWeekTips(week) {
-  const weekData = window.pregnancyWeeksData[week];
+  const weekData = window.pregnancyWeeksData?.[week];
   if (!weekData) {
-    document.getElementById('weekTips').innerHTML = '<p>Советы для этой недели недоступны.</p>';
+    console.warn(`Данные для недели ${week} не найдены.`);
+    weekTipsElement.innerHTML = '<p>Советы для этой недели недоступны.</p>';
     return;
   }
+
+  const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
+  const motherInfo = weekData.mother.map(item => `<li>${item}</li>`).join('');
+  const tipsInfo = weekData.tips.map(item => `<li>${item}</li>`).join('');
+
+  weekTipsElement.innerHTML = `
+    <h3>Развитие ребенка:</h3>
+    <ul>${childInfo}</ul>
+    <h3>Изменения у матери:</h3>
+    <ul>${motherInfo}</ul>
+    <h3>Советы:</h3>
+    <ul>${tipsInfo}</ul>
+  `;
+}
 
   // Форматирование данных
   const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
@@ -216,3 +237,5 @@ function initChecklist() {
   loadItems();
   renderShoppingList();
 }
+console.log('Текущая неделя:', weeks);
+console.log('Данные для недели:', window.pregnancyWeeksData?.[weeks]);
