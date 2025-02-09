@@ -22,17 +22,21 @@ function initTracker() {
   const customWeekResultElement = document.getElementById('customWeekResult');
   const nutritionTipsElement = document.getElementById('nutritionTips');
 
+  // Новый элемент для отображения советов
+  const weekTipsElement = document.getElementById('weekTips');
+
   let startDate = localStorage.getItem('startDate') || null;
 
-  fetch('nutrition-tips.json')
+  // Загрузка данных о неделях беременности
+  fetch('pregnancy_weeks.json')
     .then(response => response.json())
     .then(data => {
-      window.nutritionTipsData = data;
+      window.pregnancyWeeksData = data;
       if (startDate) updateCalculations();
     })
     .catch(error => {
       console.error('Ошибка:', error);
-      alert('Не удалось загрузить рекомендации по питанию.');
+      alert('Не удалось загрузить данные о неделях беременности.');
     });
 
   saveStartDateButton.addEventListener('click', () => {
@@ -50,7 +54,6 @@ function initTracker() {
 
     const start = new Date(startDate);
     const today = new Date();
-
     const pdr = new Date(start.getTime() + 280 * 24 * 60 * 60 * 1000);
     pdrElement.textContent = formatDate(pdr);
 
@@ -62,13 +65,29 @@ function initTracker() {
     currentWeekElement.textContent = `${weeks} неделя`;
     exactDurationElement.textContent = `${weeks - 1} недель ${days} дней`;
 
-    const dayOfMonth = (diffDays % 31) + 1;
-    updateNutritionTips(dayOfMonth);
+    // Обновление советов для текущей недели
+    updateWeekTips(weeks);
   }
 
-  function updateNutritionTips(day) {
-    const tipData = window.nutritionTipsData[day] || { tip: 'Рекомендации не найдены.' };
-    nutritionTipsElement.textContent = tipData.tip;
+  function updateWeekTips(week) {
+    const weekData = window.pregnancyWeeksData[week];
+    if (!weekData) {
+      weekTipsElement.innerHTML = '<p>Советы для этой недели недоступны.</p>';
+      return;
+    }
+
+    const childInfo = weekData.child.map(item => `<li>${item}</li>`).join('');
+    const motherInfo = weekData.mother.map(item => `<li>${item}</li>`).join('');
+    const tipsInfo = weekData.tips.map(item => `<li>${item}</li>`).join('');
+
+    weekTipsElement.innerHTML = `
+      <h3>Развитие ребенка:</h3>
+      <ul>${childInfo}</ul>
+      <h3>Изменения у матери:</h3>
+      <ul>${motherInfo}</ul>
+      <h3>Советы:</h3>
+      <ul>${tipsInfo}</ul>
+    `;
   }
 
   calculateForDateButton.addEventListener('click', () => {
@@ -86,6 +105,9 @@ function initTracker() {
     const days = diffDays % 7;
 
     customDateResultElement.textContent = `${weeks} неделя (${weeks - 1} недель ${days} дней)`;
+
+    // Обновление советов для указанной даты
+    updateWeekTips(weeks);
   });
 
   calculateForWeeksButton.addEventListener('click', () => {
@@ -100,6 +122,9 @@ function initTracker() {
     const start = new Date(startDate);
     const targetDate = new Date(start.getTime() + ((weeks - 1) * 7 + days) * 24 * 60 * 60 * 1000);
     customWeekResultElement.textContent = formatDate(targetDate);
+
+    // Обновление советов для указанной недели
+    updateWeekTips(weeks);
   });
 
   function formatDate(date) {
