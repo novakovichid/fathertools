@@ -191,29 +191,3 @@ strong {
   font-size: 12px; /* Уменьшаем размер текста */
   line-height: 1.4; /* Улучшаем читаемость */
 }
-
-/* Стили для советов */
-#adviceHeader {
-  color: #7b1fa2; /* Темно-фиалковый */
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-#childAdvice, #motherAdvice, #tipsAdvice {
-  list-style-type: disc;
-  padding-left: 20px;
-  margin-bottom: 15px;
-}
-
-#childAdvice li, #motherAdvice li, #tipsAdvice li {
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-#childInfo p,
-#motherInfo p,
-#tips p {
-  margin: 5px 0;
-  font-size: 14px;
-  line-height: 1.5;
-}
