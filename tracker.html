@@ -16,8 +16,10 @@
     <!-- Форма для ввода даты начала беременности -->
     <div class="section">
       <h2>Введите дату начала беременности:</h2>
-      <input type="date" id="startDateInput">
-      <button id="saveStartDate">Сохранить дату</button>
+      <div class="input-group">
+  <input type="date" id="startDateInput" placeholder="Введите дату начала беременности">
+  <button id="saveStartDate">Сохранить дату</button>
+</div>
     </div>
 
     <!-- Блок с расчетами -->
@@ -46,17 +48,21 @@
     <!-- Расчет по указанной дате -->
     <div class="section">
       <h2>Укажите дату для расчета срока:</h2>
-      <input type="date" id="customDateInput">
-      <button id="calculateForDate">Рассчитать</button>
+      <div class="input-group">
+  <input type="date" id="customDateInput" placeholder="Укажите дату для расчета срока">
+  <button id="calculateForDate">Рассчитать</button>
+</div>
       <p><strong>Срок на указанную дату:</strong> <span id="customDateResult"></span></p>
     </div>
 
     <!-- Расчет даты по указанному сроку -->
     <div class="section">
       <h2>Укажите срок для расчета даты:</h2>
-      <input type="number" id="customWeekInput" placeholder="Недели">
-      <input type="number" id="customDayInput" placeholder="Дни (необязательно)">
-      <button id="calculateForWeeks">Рассчитать</button>
+      <div class="input-group">
+  <input type="number" id="customWeekInput" placeholder="Укажите срок (недели)">
+  <input type="number" id="customDayInput" placeholder="Укажите срок (дни)">
+  <button id="calculateForWeeks">Рассчитать</button>
+</div>
       <p><strong>Дата наступления указанного срока:</strong> <span id="customWeekResult"></span></p>
     </div>
 
