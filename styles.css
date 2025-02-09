@@ -3,233 +3,37 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f3e5f5; /* Фиалковый фон */
-  color: #333;
-  box-sizing: border-box;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-.container {
-  max-width: 100%;
-  margin: 20px auto;
-  padding: 20px;
-  padding-bottom: 100px; /* Отступ для адресной строки Яндекс.Браузера */
-  background: #fff;
-  border-radius: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-h1 {
-  text-align: center;
-  color: #7b1fa2; /* Темно-фиалковый */
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-.section {
-  margin-bottom: 20px;
-}
-
-input[type="date"],
-input[type="number"],
-input[type="text"] {
-  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
-  padding: 12px;
-  margin: 0 5vw 10px; /* Горизонтальные отступы по 5vw */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 16px;
-}
-
-button {
-  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
-  padding: 12px;
-  background-color: #7b1fa2; /* Темно-фиалковый */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  cursor: pointer;
-  margin: 10px 5vw; /* Горизонтальные отступы по 5vw */
-}
-
-button:hover {
-  background-color: #6a1b9a; /* Еще темнее фиалковый */
-}
-
-p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-strong {
-  color: #7b1fa2; /* Темно-фиалковый */
-}
-
-/* Стили для главного меню */
-.menu {
-  display: flex;
-  flex-direction: column;
-  gap: 15px; /* Расстояние между кнопками */
-  align-items: center; /* Центрирование кнопок */
-  margin-top: 20px;
-}
-
-.menu button {
-  width: 80%; /* Кнопки занимают 80% ширины контейнера */
-  max-width: 400px; /* Ограничиваем максимальную ширину */
-  padding: 15px;
-  font-size: 18px;
-  text-align: center;
-  background-color: #7b1fa2; /* Темно-фиалковый */
-  color: white;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.menu button:hover {
-  background-color: #6a1b9a; /* Еще темнее фиалковый */
-}
-
-.menu button:disabled {
-  background-color: #ccc; /* Серый цвет для недоступных кнопок */
-  cursor: not-allowed;
-}
-
-/* Кнопка возврата */
-.back-button {
-  background-color: #ffeb3b; /* Желтый цвет */
-  color: #333;
-  margin-bottom: 20px;
-  width: calc(100% - 10vw); /* Учитываем горизонтальные отступы */
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin: 10px 5vw; /* Горизонтальные отступы по 5vw */
-}
-
-.back-button:hover {
-  background-color: #fdd835; /* Темнее желтый */
-}
-
-/* Стили для карточек товаров */
-#shoppingList {
-  list-style-type: none;
-  padding: 0;
-}
-
-#shoppingList li {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px; /* Уменьшаем внутренние отступы */
-  margin-bottom: 6px; /* Уменьшаем расстояние между карточками */
-  background-color: #ffffff; /* Белый фон */
-  border-radius: 6px; /* Уменьшаем радиус скругления */
-  border: 1px solid #ddd;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Уменьшаем тень */
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-#shoppingList li:hover {
-  transform: translateY(-1px); /* Легкий эффект при наведении */
-}
-
-#shoppingList li.completed {
-  background-color: #e8f5e9; /* Зеленоватый фон для купленных товаров */
-  color: #4caf50; /* Зеленый текст */
-}
-
-#shoppingList li.completed .item-name {
-  text-decoration: line-through;
-}
-
-/* Иконки */
-.icon-button {
-  background: none;
-  border: none;
-  font-size: 16px; /* Уменьшаем размер иконок */
-  cursor: pointer;
-  color: #7b1fa2; /* Фиалковый цвет */
-  margin-left: 6px; /* Уменьшаем расстояние между иконками */
-  transition: color 0.3s ease;
-}
-
-.icon-button:hover {
-  color: #6a1b9a; /* Темнее фиалковый */
-}
-
-.icon-button.mark {
-  color: #4caf50; /* Зеленый для "Куплено" */
-}
-
-.icon-button.mark:hover {
-  color: #45a049; /* Темнее зеленый */
-}
-
-.icon-button.delete {
-  color: #f44336; /* Красный для "Удалить" */
-}
-
-.icon-button.delete:hover {
-  color: #e53935; /* Темнее красный */
-}
-
-/* Текст товара */
-.item-name {
-  flex-grow: 1;
-  font-size: 12px; /* Уменьшаем размер текста */
-  line-height: 1.4; /* Улучшаем читаемость */
-}
-/* Базовые стили */
-#weekTips {
-  margin: 20px;
-  padding: 10px;
   background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.tips-section {
-  margin-bottom: 15px;
-}
-
-.tips-header {
-  font-size: 18px;
-  color: #7b1fa2; /* Темно-фиалковый */
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.tips-list {
-  list-style-type: disc;
-  margin-left: 20px;
-  font-size: 16px;
-  line-height: 1.5;
   color: #333;
 }
 
-/* Адаптивность */
-@media (max-width: 600px) {
-  .tips-header {
-    font-size: 16px;
-  }
-
-  .tips-list {
-    font-size: 14px;
-  }
+header {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 15px;
+  text-align: center;
 }
-/* Базовые стили */
+
+header a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+main {
+  padding: 20px;
+}
+
+section {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
 .input-group {
   display: flex;
   align-items: center;
@@ -237,7 +41,7 @@ strong {
 }
 
 .input-group input {
-  flex: 1; /* Поле ввода занимает доступное пространство */
+  flex: 1;
   padding: 10px;
   font-size: 16px;
   border: 1px solid #ccc;
@@ -245,10 +49,10 @@ strong {
 }
 
 .input-group button {
-  margin-left: 10px; /* Отступ между полем ввода и кнопкой */
+  margin-left: 10px;
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #7b1fa2; /* Темно-фиалковый цвет */
+  background-color: #7b1fa2;
   color: white;
   border: none;
   border-radius: 4px;
@@ -256,22 +60,125 @@ strong {
 }
 
 .input-group button:hover {
-  background-color: #6a1b9a; /* Темнее при наведении */
+  background-color: #6a1b9a;
+}
+
+#weekTips h3 {
+  font-size: 18px;
+  color: #7b1fa2;
+  margin-bottom: 10px;
+}
+
+#weekTips ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Стили для чек-листа */
+#shoppingList {
+  margin-top: 20px;
+}
+
+#shoppingList .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#shoppingList .item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#shoppingList .item.completed {
+  text-decoration: line-through;
+  color: #aaa;
 }
 
 /* Адаптация для мобильных устройств */
 @media (max-width: 600px) {
   .input-group {
-    flex-direction: column; /* Элементы в столбец на маленьких экранах */
-    align-items: stretch; /* Растянуть элементы по ширине */
+    flex-direction: column;
+    align-items: stretch;
   }
 
   .input-group input {
-    margin-bottom: 10px; /* Отступ между полем ввода и кнопкой */
+    margin-bottom: 10px;
   }
 
   .input-group button {
-    margin-left: 0; /* Убрать отступ слева */
-    width: 100%; /* Кнопка занимает всю ширину */
+    margin-left: 0;
+    width: 100%;
   }
+
+  #weekTips h3 {
+    font-size: 16px;
+  }
+
+  #weekTips ul {
+    font-size: 14px;
+  }
+}
+
+/* Стили для таблицы рекомендаций по питанию */
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.nutrition-table th {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Стили для кнопки "Добавить" */
+.add-item-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #7b1fa2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-item-button:hover {
+  background-color: #6a1b9a;
+}
+
+/* Стили для заголовков разделов */
+section h2 {
+  color: #7b1fa2;
+  margin-bottom: 10px;
+}
+
+/* Стили для ссылок */
+a {
+  color: #7b1fa2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Стили для ошибок или предупреждений */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
 }
