@@ -3,17 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FatherTools</title>
+  <title>Главное меню</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>Главное меню</h1>
-    <div class="menu">
-      <button onclick="location.href='tracker.html'">Трекер беременности</button>
-      <button onclick="location.href='checklist.html'">Чек-лист покупок</button>
-      <button disabled>Другие функции (в разработке)</button>
-    </div>
-  </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>Выберите раздел:</h2>
+      <ul class="menu-list">
+        <li><a href="tracker.html" class="menu-link">Трекер беременности</a></li>
+        <li><a href="checklist.html" class="menu-link">Чек-лист покупок</a></li>
+        <li><a href="#" class="menu-link disabled">Другие функции (в разработке)</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Ваше приложение</p>
+  </footer>
 </body>
 </html>
