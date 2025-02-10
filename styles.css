@@ -14,26 +14,126 @@ header {
   text-align: center;
 }
 
-header a {
-  color: white;
-  text-decoration: none;
-  font-size: 14px;
+header h1 {
+  margin: 0;
 }
 
 main {
   padding: 20px;
 }
 
-section {
-  margin-bottom: 20px;
+footer {
+  background-color: #7b1fa2;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+/* Меню */
+.menu-list {
+  list-style-type: none;
+  padding: 0;
 }
 
+.menu-list li {
+  margin-bottom: 10px;
+}
+
+.menu-link {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-link:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+.menu-link.disabled {
+  background-color: #ccc; /* Серый цвет для недоступных ссылок */
+  cursor: not-allowed;
+}
+
+.menu-link.disabled:hover {
+  background-color: #ccc; /* Нет изменений при наведении */
+}
+
+/* Стили для кнопок */
+button {
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 600px) {
+  .menu-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Стили для таблицы рекомендаций по питанию */
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.nutrition-table th {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Стили для чек-листа */
+#shoppingList {
+  margin-top: 20px;
+}
+
+#shoppingList .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+#shoppingList .item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#shoppingList .item.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* Стили для трекера беременности */
 .input-group {
   display: flex;
   align-items: center;
@@ -76,26 +176,6 @@ label {
   line-height: 1.5;
 }
 
-/* Стили для чек-листа */
-#shoppingList {
-  margin-top: 20px;
-}
-
-#shoppingList .item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-#shoppingList .item input[type="checkbox"] {
-  margin-right: 10px;
-}
-
-#shoppingList .item.completed {
-  text-decoration: line-through;
-  color: #aaa;
-}
-
 /* Адаптация для мобильных устройств */
 @media (max-width: 600px) {
   .input-group {
@@ -121,45 +201,6 @@ label {
   }
 }
 
-/* Стили для таблицы рекомендаций по питанию */
-.nutrition-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-.nutrition-table th,
-.nutrition-table td {
-  border: 1px solid #ccc;
-  padding: 10px;
-  text-align: left;
-}
-
-.nutrition-table th {
-  background-color: #7b1fa2;
-  color: white;
-}
-
-.nutrition-table tr:nth-child(even) {
-  background-color: #f2f2f2;
-}
-
-/* Стили для кнопки "Добавить" */
-.add-item-button {
-  margin-top: 10px;
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #7b1fa2;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-item-button:hover {
-  background-color: #6a1b9a;
-}
-
 /* Стили для заголовков разделов */
 section h2 {
   color: #7b1fa2;
@@ -181,4 +222,61 @@ a:hover {
   color: red;
   font-size: 14px;
   margin-top: 10px;
+}
+
+/* Стили для формы добавления товара */
+.add-item-form {
+  margin-top: 20px;
+}
+
+.add-item-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.add-item-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-item-form button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Стили для списка покупок */
+.shopping-list {
+  margin-top: 20px;
+}
+
+.shopping-list .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.shopping-list .item.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+.shopping-list .item button {
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.shopping-list .item button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
 }
