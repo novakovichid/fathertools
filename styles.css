@@ -32,7 +32,7 @@ footer {
   width: 100%;
 }
 
-/* Стили для кнопки "Назад" */
+/* Кнопка "Назад в меню" */
 a.back-button {
   display: inline-block;
   margin-top: 10px;
@@ -62,6 +62,8 @@ a.back-button:hover {
 
 .menu-link {
   display: inline-block;
+  width: 100%; /* Фиксированная ширина для кнопок */
+  max-width: 300px; /* Ограничение ширины */
   padding: 10px 15px;
   background-color: #ffeb3b; /* Желтый акцент */
   color: #333;
