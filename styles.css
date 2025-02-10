@@ -32,6 +32,24 @@ footer {
   width: 100%;
 }
 
+/* Стили для кнопки "Назад" */
+a.back-button {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+a.back-button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
 /* Меню */
 .menu-list {
   list-style-type: none;
@@ -121,6 +139,7 @@ button:hover {
 #shoppingList .item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 10px;
 }
 
@@ -131,6 +150,47 @@ button:hover {
 #shoppingList .item.completed {
   text-decoration: line-through;
   color: #aaa;
+}
+
+#shoppingList .item button {
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#shoppingList .item button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Форма добавления товара */
+.add-item-form {
+  margin-top: 20px;
+}
+
+.add-item-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex: 1;
+}
+
+.add-item-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-item-form button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
 }
 
 /* Стили для трекера беременности */
@@ -152,15 +212,15 @@ button:hover {
   margin-left: 10px;
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #7b1fa2;
-  color: white;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
   border: none;
   border-radius: 4px;
   cursor: pointer;
 }
 
 .input-group button:hover {
-  background-color: #6a1b9a;
+  background-color: #fbc02d; /* Темно-желтый при наведении */
 }
 
 #weekTips h3 {
@@ -222,61 +282,4 @@ a:hover {
   color: red;
   font-size: 14px;
   margin-top: 10px;
-}
-
-/* Стили для формы добавления товара */
-.add-item-form {
-  margin-top: 20px;
-}
-
-.add-item-form input {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  margin-right: 10px;
-}
-
-.add-item-form button {
-  padding: 10px 15px;
-  font-size: 16px;
-  background-color: #ffeb3b; /* Желтый акцент */
-  color: #333;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.add-item-form button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
-}
-
-/* Стили для списка покупок */
-.shopping-list {
-  margin-top: 20px;
-}
-
-.shopping-list .item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
-
-.shopping-list .item.completed {
-  text-decoration: line-through;
-  color: #aaa;
-}
-
-.shopping-list .item button {
-  background-color: #ffeb3b; /* Желтый акцент */
-  color: #333;
-  border: none;
-  padding: 5px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.shopping-list .item button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
 }
