@@ -21,29 +21,26 @@ function initTracker() {
   const calculateForWeeksButton = document.getElementById('calculateForWeeks');
   const customWeekResultElement = document.getElementById('customWeekResult');
   const nutritionTipsElement = document.getElementById('nutritionTips');
-
-  // Новый элемент для отображения советов
   const weekTipsElement = document.getElementById('weekTips');
+
+  // Прогресс-бар
+  const progressBar = document.getElementById('pregnancyProgressBar');
+  const progressText = document.getElementById('progressText');
 
   let startDate = localStorage.getItem('startDate') || null;
 
   // Загрузка данных о неделях беременности
   fetch('pregnancy_weeks.json')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error(`Ошибка загрузки данных: ${response.status}`);
-    }
-    return response.json();
-  })
-  .then(data => {
-    console.log('Данные успешно загружены:', data);
-    window.pregnancyWeeksData = data;
-    if (startDate) updateCalculations();
-  })
-  .catch(error => {
-    console.error('Ошибка:', error);
-    alert('Не удалось загрузить данные о неделях беременности.');
-  });
+    .then(response => response.json())
+    .then(data => {
+      console.log('Данные успешно загружены:', data);
+      window.pregnancyWeeksData = data;
+      if (startDate) updateCalculations();
+    })
+    .catch(error => {
+      console.error('Ошибка:', error);
+      alert('Не удалось загрузить данные о неделях беременности.');
+    });
 
   saveStartDateButton.addEventListener('click', () => {
     startDate = startDateInput.value;
@@ -71,8 +68,18 @@ function initTracker() {
     currentWeekElement.textContent = `${weeks} неделя`;
     exactDurationElement.textContent = `${weeks - 1} недель ${days} дней`;
 
+    // Обновление прогресс-бара
+    updateProgressBar(weeks);
+
     // Обновление советов для текущей недели
     updateWeekTips(weeks);
+  }
+
+  function updateProgressBar(weeks) {
+    const totalWeeks = 40; // Общее количество недель беременности
+    const progressPercentage = (weeks / totalWeeks) * 100;
+    progressBar.style.width = `${progressPercentage}%`;
+    progressText.textContent = `Текущая неделя: ${weeks} из ${totalWeeks}`;
   }
 
   function updateWeekTips(week) {
@@ -95,15 +102,6 @@ function initTracker() {
       <h3>Советы:</h3>
       <ul>${tipsInfo}</ul>
     `;
-
-    // Обновляем дополнительные элементы, если они существуют
-    const childTipsElement = document.getElementById('childTips');
-    const motherTipsElement = document.getElementById('motherTips');
-    const generalTipsElement = document.getElementById('generalTips');
-
-    if (childTipsElement) childTipsElement.innerHTML = childInfo || '<li>Информация отсутствует.</li>';
-    if (motherTipsElement) motherTipsElement.innerHTML = motherInfo || '<li>Информация отсутствует.</li>';
-    if (generalTipsElement) generalTipsElement.innerHTML = tipsInfo || '<li>Советы отсутствуют.</li>';
   }
 
   calculateForDateButton.addEventListener('click', () => {
@@ -122,6 +120,9 @@ function initTracker() {
 
     customDateResultElement.textContent = `${weeks} неделя (${weeks - 1} недель ${days} дней)`;
 
+    // Обновление прогресс-бара
+    updateProgressBar(weeks);
+
     // Обновление советов для указанной даты
     updateWeekTips(weeks);
   });
@@ -138,6 +139,9 @@ function initTracker() {
     const start = new Date(startDate);
     const targetDate = new Date(start.getTime() + ((weeks - 1) * 7 + days) * 24 * 60 * 60 * 1000);
     customWeekResultElement.textContent = formatDate(targetDate);
+
+    // Обновление прогресс-бара
+    updateProgressBar(weeks);
 
     // Обновление советов для указанной недели
     updateWeekTips(weeks);
@@ -161,7 +165,6 @@ function initChecklist() {
   const newItemInput = document.getElementById('newItemInput');
   const addItemButton = document.getElementById('addItemButton');
   const shoppingList = document.getElementById('shoppingList');
-
   let items = [];
 
   // Загрузка данных из localStorage
@@ -183,27 +186,21 @@ function initChecklist() {
     items.forEach((item, index) => {
       const li = document.createElement('li');
       li.className = item.completed ? 'completed' : '';
-
       const itemName = document.createElement('span');
       itemName.textContent = item.name;
       itemName.className = 'item-name';
-
       const controls = document.createElement('div');
       controls.className = 'controls';
-
       const markButton = document.createElement('button');
       markButton.className = 'icon-button mark';
       markButton.innerHTML = item.completed ? '&#10004;' : '&#9998;';
       markButton.onclick = () => toggleItem(index);
-
       const deleteButton = document.createElement('button');
       deleteButton.className = 'icon-button delete';
       deleteButton.innerHTML = '&#128465;';
       deleteButton.onclick = () => deleteItem(index);
-
       controls.appendChild(markButton);
       controls.appendChild(deleteButton);
-
       li.appendChild(itemName);
       li.appendChild(controls);
       shoppingList.appendChild(li);
@@ -235,5 +232,3 @@ function initChecklist() {
   loadItems();
   renderShoppingList();
 }
-console.log('Текущая неделя:', weeks);
-console.log('Данные для недели:', window.pregnancyWeeksData?.[weeks]);
