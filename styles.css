@@ -238,6 +238,29 @@ button:hover {
   line-height: 1.5;
 }
 
+/* Стили для прогресс-бара */
+.progress-container {
+  margin-top: 20px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  height: 20px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #7b1fa2;
+  width: 0%; /* Изначально 0% */
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  color: #7b1fa2;
+}
+
 /* Адаптация для мобильных устройств */
 @media (max-width: 600px) {
   .input-group {
@@ -259,6 +282,14 @@ button:hover {
   }
 
   #weekTips ul {
+    font-size: 14px;
+  }
+
+  .progress-container {
+    height: 15px;
+  }
+
+  .progress-text {
     font-size: 14px;
   }
 }
