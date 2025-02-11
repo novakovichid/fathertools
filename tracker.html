@@ -8,9 +8,9 @@
 </head>
 <body>
   <header>
-  <h1>Трекер беременности</h1>
-  <a href="index.html" class="back-button">← Назад в меню</a>
-</header>
+    <h1>Трекер беременности</h1>
+    <a href="index.html" class="back-button">← Назад в меню</a>
+  </header>
 
   <main>
     <section>
@@ -26,6 +26,12 @@
       <p><strong>Предполагаемая дата родов (ПДР):</strong> <span id="pdr"></span></p>
       <p><strong>Текущая неделя беременности:</strong> <span id="currentWeek"></span></p>
       <p><strong>Точный срок беременности:</strong> <span id="exactDuration"></span></p>
+
+      <!-- Прогресс-бар -->
+      <div class="progress-container">
+        <div class="progress-bar" id="pregnancyProgressBar"></div>
+        <div class="progress-text" id="progressText"></div>
+      </div>
     </section>
 
     <section>
