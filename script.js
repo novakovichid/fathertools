@@ -73,13 +73,16 @@ function initTracker() {
 
     // Обновление советов для текущей недели
     updateWeekTips(weeks);
+
+    // Обновление рекомендаций по питанию
+    updateNutritionTips(diffDays);
   }
 
   function updateProgressBar(weeks) {
     const totalWeeks = 40; // Общее количество недель беременности
     const progressPercentage = (weeks / totalWeeks) * 100;
     progressBar.style.width = `${progressPercentage}%`;
-    progressText.textContent = `Текущая неделя: ${weeks} из ${totalWeeks}`;
+    progressText.textContent = `Текущая неделя: ${weeks} из ${totalWeeks} (${progressPercentage.toFixed(2)}%)`;
   }
 
   function updateWeekTips(week) {
@@ -102,6 +105,12 @@ function initTracker() {
       <h3>Советы:</h3>
       <ul>${tipsInfo}</ul>
     `;
+  }
+
+  function updateNutritionTips(day) {
+    const dayOfMonth = (day % 31) + 1;
+    const tipData = window.nutritionTipsData?.[dayOfMonth] || { tip: 'Рекомендации не найдены.' };
+    nutritionTipsElement.textContent = tipData.tip;
   }
 
   calculateForDateButton.addEventListener('click', () => {
