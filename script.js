@@ -22,12 +22,14 @@ function initTracker() {
   const customWeekResultElement = document.getElementById('customWeekResult');
   const nutritionTipsElement = document.getElementById('nutritionTips');
   const weekTipsElement = document.getElementById('weekTips');
+  const correctionDaysInput = document.getElementById('correctionDaysInput');
 
   // Прогресс-бар
   const progressBar = document.getElementById('pregnancyProgressBar');
   const progressText = document.getElementById('progressText');
 
   let startDate = localStorage.getItem('startDate') || null;
+  let correctionDays = parseInt(localStorage.getItem('correctionDays'), 10) || 0;
 
   // Загрузка данных о неделях беременности
   fetch('pregnancy_weeks.json')
@@ -44,18 +46,26 @@ function initTracker() {
 
   saveStartDateButton.addEventListener('click', () => {
     startDate = startDateInput.value;
+    correctionDays = parseInt(correctionDaysInput.value, 10) || 0;
     if (startDate) {
       localStorage.setItem('startDate', startDate);
+      localStorage.setItem('correctionDays', correctionDays);
       updateCalculations();
     } else {
       alert('Пожалуйста, выберите дату.');
     }
   });
 
+  function getCorrectedStartDate() {
+    if (!startDate) return null;
+    const start = new Date(startDate);
+    start.setDate(start.getDate() + correctionDays);
+    return start;
+  }
+
   function updateCalculations() {
     if (!startDate) return;
-
-    const start = new Date(startDate);
+    const start = getCorrectedStartDate();
     const today = new Date();
     const pdr = new Date(start.getTime() + 280 * 24 * 60 * 60 * 1000);
     pdrElement.textContent = formatDate(pdr);
@@ -121,7 +131,7 @@ function initTracker() {
     }
 
     const date = new Date(customDate);
-    const start = new Date(startDate);
+    const start = getCorrectedStartDate();
     const diffTime = Math.abs(date - start);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     const weeks = Math.floor(diffDays / 7) + 1;
@@ -145,7 +155,7 @@ function initTracker() {
       return;
     }
 
-    const start = new Date(startDate);
+    const start = getCorrectedStartDate();
     const targetDate = new Date(start.getTime() + ((weeks - 1) * 7 + days) * 24 * 60 * 60 * 1000);
     customWeekResultElement.textContent = formatDate(targetDate);
 
@@ -165,6 +175,7 @@ function initTracker() {
 
   if (startDate) {
     startDateInput.value = startDate;
+    if (correctionDaysInput) correctionDaysInput.value = correctionDays;
     updateCalculations();
   }
 }
