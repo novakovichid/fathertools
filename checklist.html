@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чек-лист покупок</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Чек-лист покупок</h1>
+    <a href="index.html" class="back-button">← Назад в меню</a>
+  </header>
+
+  <main>
+    <section>
+      <h2>Добавить товар:</h2>
+      <form class="add-item-form">
+        <input type="text" id="newItemInput" placeholder="Введите название товара">
+        <button type="button" id="addItemButton">Добавить</button>
+      </form>
+    </section>
+
+    <section>
+      <h2>Список покупок:</h2>
+      <ul id="shoppingList">
+        <!-- Список товаров будет добавляться сюда -->
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 Ваше приложение</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

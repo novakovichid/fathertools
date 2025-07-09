@@ -1,0 +1,8 @@
+
+[
+  { "name": "Одежда для малыша", "completed": false },
+  { "name": "Подгузники", "completed": false },
+  { "name": "Коляска", "completed": false },
+  { "name": "Автокресло", "completed": false },
+  { "name": "Витамины", "completed": false }
+]

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Трекер беременности</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Трекер беременности</h1>
+    <a href="index.html" class="back-button">← Назад в меню</a>
+  </header>
+
+  <main>
+    <section>
+      <label for="startDateInput">Введите дату начала беременности:</label>
+      <div class="input-group">
+        <input type="date" id="startDateInput" placeholder="Введите дату начала беременности">
+        <button id="saveStartDate">Сохранить дату</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>Расчеты:</h2>
+      <p><strong>Предполагаемая дата родов (ПДР):</strong> <span id="pdr"></span></p>
+      <p><strong>Текущая неделя беременности:</strong> <span id="currentWeek"></span></p>
+      <p><strong>Точный срок беременности:</strong> <span id="exactDuration"></span></p>
+
+      <!-- Прогресс-бар -->
+      <div class="progress-container">
+        <div class="progress-bar" id="pregnancyProgressBar"></div>
+        <div class="progress-text" id="progressText"></div>
+      </div>
+    </section>
+
+    <section>
+      <label for="customDateInput">Укажите дату для расчета срока:</label>
+      <div class="input-group">
+        <input type="date" id="customDateInput" placeholder="Укажите дату для расчета срока">
+        <button id="calculateForDate">Рассчитать</button>
+      </div>
+      <p><strong>Срок на указанную дату:</strong> <span id="customDateResult"></span></p>
+    </section>
+
+    <section>
+      <label for="customWeekInput">Укажите срок для расчета даты:</label>
+      <div class="input-group">
+        <input type="number" id="customWeekInput" placeholder="Укажите срок (недели)">
+        <input type="number" id="customDayInput" placeholder="Укажите срок (дни)">
+        <button id="calculateForWeeks">Рассчитать</button>
+      </div>
+      <p><strong>Дата наступления указанного срока:</strong> <span id="customWeekResult"></span></p>
+    </section>
+
+    <section>
+      <h3>Рекомендации по питанию на текущий день:</h3>
+      <p id="nutritionTips">Здесь будут отображаться рекомендации по питанию.</p>
+    </section>
+
+    <section>
+      <h3>Советы по неделям беременности:</h3>
+      <div id="weekTips">
+        <!-- Здесь будут отображаться советы для текущей недели -->
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

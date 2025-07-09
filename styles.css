@@ -1,0 +1,322 @@
+/* Базовые стили */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  background-color: #7b1fa2;
+  color: white;
+  padding: 15px;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  background-color: #7b1fa2;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Кнопка "Назад в меню" */
+a.back-button {
+  display: inline-block;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 10px 15px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+a.back-button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Меню */
+.menu-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.menu-list li {
+  margin-bottom: 10px;
+}
+
+.menu-link {
+  display: inline-block;
+  width: 100%; /* Фиксированная ширина для кнопок */
+  max-width: 300px; /* Ограничение ширины */
+  padding: 10px 15px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-link:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+.menu-link.disabled {
+  background-color: #ccc; /* Серый цвет для недоступных ссылок */
+  cursor: not-allowed;
+}
+
+.menu-link.disabled:hover {
+  background-color: #ccc; /* Нет изменений при наведении */
+}
+
+/* Стили для кнопок */
+button {
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 600px) {
+  .menu-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Стили для таблицы рекомендаций по питанию */
+.nutrition-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.nutrition-table th,
+.nutrition-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.nutrition-table th {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.nutrition-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Стили для чек-листа */
+#shoppingList {
+  margin-top: 20px;
+}
+
+#shoppingList .item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#shoppingList .item input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+#shoppingList .item.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+#shoppingList .item button {
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#shoppingList .item button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Форма добавления товара */
+.add-item-form {
+  margin-top: 20px;
+}
+
+.add-item-form input {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex: 1;
+}
+
+.add-item-form button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-item-form button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+/* Стили для трекера беременности */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-group button {
+  margin-left: 10px;
+  padding: 10px 15px;
+  font-size: 16px;
+  background-color: #ffeb3b; /* Желтый акцент */
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.input-group button:hover {
+  background-color: #fbc02d; /* Темно-желтый при наведении */
+}
+
+#weekTips h3 {
+  font-size: 18px;
+  color: #7b1fa2;
+  margin-bottom: 10px;
+}
+
+#weekTips ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Стили для прогресс-бара */
+.progress-container {
+  margin-top: 20px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+  height: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #7b1fa2;
+  width: 0%; /* Изначально 0% */
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+}
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 600px) {
+  .input-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .input-group input {
+    margin-bottom: 10px;
+  }
+
+  .input-group button {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  #weekTips h3 {
+    font-size: 16px;
+  }
+
+  #weekTips ul {
+    font-size: 14px;
+  }
+
+  .progress-container {
+    height: 15px;
+  }
+
+  .progress-text {
+    font-size: 14px;
+  }
+}
+
+/* Стили для заголовков разделов */
+section h2 {
+  color: #7b1fa2;
+  margin-bottom: 10px;
+}
+
+/* Стили для ссылок */
+a {
+  color: #7b1fa2;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Стили для ошибок или предупреждений */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
