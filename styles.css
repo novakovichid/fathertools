@@ -341,6 +341,11 @@ a:hover {
   background: #ede7f6;
 }
 
+input {
+  padding: 10px 8px;
+  box-sizing: border-box;
+}
+
 /* --- Адаптация для iPhone 15 Pro Max и других мобильных устройств --- */
 @media (max-width: 500px) {
   body {
