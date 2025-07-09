@@ -91,55 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     saveChildDataButton.addEventListener('click', () => {
         saveChildData();
-        showAdvice();
     });
     updateChildParamsButton.addEventListener('click', saveParamsOnly);
 
     renderChildData();
 
-    // Загрузка совета из child-advice.json
-    function getChildAgeString() {
-        const birth = document.getElementById('birthDateInput').value;
-        if (!birth) return '';
-        const now = new Date();
-        const b = new Date(birth);
-        let years = now.getFullYear() - b.getFullYear();
-        let months = now.getMonth() - b.getMonth();
-        if (months < 0) { years--; months += 12; }
-        let ageStr = '';
-        if (years > 0) ageStr += years + ' год' + (years > 1 && years < 5 ? 'а' : years > 4 ? 'ов' : '') + ' ';
-        if (months > 0) ageStr += months + ' мес.';
-        return ageStr.trim();
-    }
-
-    function showAdvice() {
-        fetch('https://raw.githubusercontent.com/novakovichid/fathertools/main/child-advice.json')
-            .then(res => res.json())
-            .then(data => {
-                const adviceBlock = document.getElementById('childAdvice');
-                const siteAge = getChildAgeString();
-                const birthDate = document.getElementById('birthDateInput').value;
-                let warning = '';
-                console.log('siteAge:', siteAge, 'data.age:', data.age);
-                if (siteAge && data.age && normalizeAge(siteAge) !== normalizeAge(data.age)) {
-                    warning = `\n\n⚠️ Совет сгенерирован для возраста: ${data.age}. Ваш возраст: ${siteAge}.`;
-                    showAdviceInstruction(birthDate);
-                } else {
-                    document.getElementById('advice-instruction').innerHTML = '';
-                }
-                adviceBlock.innerText = data.advice + warning;
-            })
-            .catch(() => {
-                document.getElementById('childAdvice').innerText = 'Совет временно недоступен.';
-            });
-    }
-
-    function showAdviceInstruction(birthDate) {
-        document.getElementById('advice-instruction').innerHTML =
-            `Для получения индивидуального совета <a href="https://github.com/novakovichid/fathertools/issues/new?title=update-child-birthdate&body=${encodeURIComponent(birthDate)}" target="_blank">создайте issue</a> с заголовком <b>update-child-birthdate</b> и текстом: <b>${birthDate}</b>.<br>Совет появится через 1-2 минуты.`;
-    }
-
-    // Показывать совет при загрузке и при изменении даты рождения
-    showAdvice();
-    document.getElementById('birthDateInput').addEventListener('change', showAdvice);
+    // Удалён весь функционал советов по возрасту ребёнка
 }); 
