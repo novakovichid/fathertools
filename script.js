@@ -6,6 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
+// --- ВСТАВЬТЕ СВОЙ КЛЮЧ OpenRouter НИЖЕ ---
+window.OPENROUTER_API_KEY = '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';
+// ------------------------------------------
+
 // Инициализация трекера беременности
 function initTracker() {
   const startDateInput = document.getElementById('startDateInput');
@@ -92,7 +96,7 @@ function initTracker() {
     const totalWeeks = 40; // Общее количество недель беременности
     const progressPercentage = (weeks / totalWeeks) * 100;
     progressBar.style.width = `${progressPercentage}%`;
-    progressText.textContent = `Текущая неделя: ${weeks} из ${totalWeeks} (${progressPercentage.toFixed(2)}%)`;
+    progressText.textContent = `${weeks} неделя • ${progressPercentage.toFixed(0)}%`;
   }
 
   function updateWeekTips(week) {
@@ -117,10 +121,35 @@ function initTracker() {
     `;
   }
 
-  function updateNutritionTips(day) {
-    const dayOfMonth = (day % 31) + 1;
-    const tipData = window.nutritionTipsData?.[dayOfMonth] || { tip: 'Рекомендации не найдены.' };
-    nutritionTipsElement.textContent = tipData.tip;
+  async function updateNutritionTips(day) {
+    const week = parseInt(currentWeekElement.textContent) || 1;
+    const apiKey = window.OPENROUTER_API_KEY;
+    if (!apiKey) {
+      nutritionTipsElement.textContent = 'Нет API-ключа OpenRouter. Укажите ключ в script.js.';
+      return;
+    }
+    nutritionTipsElement.textContent = 'Загрузка совета...';
+    try {
+      const prompt = `Ты — заботливый врач-диетолог. Дай очень короткий совет по питанию для беременной на ${week}-й неделе беременности. Не повторяйся.`;
+      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${apiKey}`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          model: 'openai/gpt-3.5-turbo',
+          messages: [{ role: 'user', content: prompt }],
+          max_tokens: 50,
+          temperature: 0.7
+        })
+      });
+      const data = await response.json();
+      const tip = data.choices?.[0]?.message?.content?.trim();
+      nutritionTipsElement.textContent = tip || 'Совет не получен.';
+    } catch (e) {
+      nutritionTipsElement.textContent = 'Ошибка получения совета.';
+    }
   }
 
   calculateForDateButton.addEventListener('click', () => {

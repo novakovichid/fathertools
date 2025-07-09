@@ -38,7 +38,8 @@ a.back-button {
   margin-top: 10px;
   margin-bottom: 20px;
   padding: 10px 15px;
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   text-decoration: none;
   border-radius: 4px;
@@ -47,7 +48,8 @@ a.back-button {
 }
 
 a.back-button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 /* Меню */
@@ -62,10 +64,13 @@ a.back-button:hover {
 
 .menu-link {
   display: inline-block;
-  width: 100%; /* Фиксированная ширина для кнопок */
-  max-width: 300px; /* Ограничение ширины */
+  width: 100%;
+  /* Фиксированная ширина для кнопок */
+  max-width: 300px;
+  /* Ограничение ширины */
   padding: 10px 15px;
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   text-decoration: none;
   border-radius: 4px;
@@ -74,21 +79,25 @@ a.back-button:hover {
 }
 
 .menu-link:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 .menu-link.disabled {
-  background-color: #ccc; /* Серый цвет для недоступных ссылок */
+  background-color: #ccc;
+  /* Серый цвет для недоступных ссылок */
   cursor: not-allowed;
 }
 
 .menu-link.disabled:hover {
-  background-color: #ccc; /* Нет изменений при наведении */
+  background-color: #ccc;
+  /* Нет изменений при наведении */
 }
 
 /* Стили для кнопок */
 button {
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   border: none;
   padding: 10px 15px;
@@ -99,7 +108,8 @@ button {
 }
 
 button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 /* Адаптация для мобильных устройств */
@@ -155,7 +165,8 @@ button:hover {
 }
 
 #shoppingList .item button {
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   border: none;
   padding: 5px 10px;
@@ -164,7 +175,8 @@ button:hover {
 }
 
 #shoppingList .item button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 /* Форма добавления товара */
@@ -184,7 +196,8 @@ button:hover {
 .add-item-form button {
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   border: none;
   border-radius: 4px;
@@ -192,7 +205,8 @@ button:hover {
 }
 
 .add-item-form button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 /* Стили для трекера беременности */
@@ -214,7 +228,8 @@ button:hover {
   margin-left: 10px;
   padding: 10px 15px;
   font-size: 16px;
-  background-color: #ffeb3b; /* Желтый акцент */
+  background-color: #ffeb3b;
+  /* Желтый акцент */
   color: #333;
   border: none;
   border-radius: 4px;
@@ -222,7 +237,8 @@ button:hover {
 }
 
 .input-group button:hover {
-  background-color: #fbc02d; /* Темно-желтый при наведении */
+  background-color: #fbc02d;
+  /* Темно-желтый при наведении */
 }
 
 #weekTips h3 {
@@ -243,16 +259,17 @@ button:hover {
   margin-top: 20px;
   background-color: #e0e0e0;
   border-radius: 20px;
-  height: 20px;
+  height: 28px;
   overflow: hidden;
   position: relative;
+  box-shadow: 0 2px 8px rgba(123, 31, 162, 0.08);
 }
 
 .progress-bar {
   height: 100%;
-  background-color: #7b1fa2;
-  width: 0%; /* Изначально 0% */
-  transition: width 0.3s ease;
+  background: linear-gradient(90deg, #7b1fa2 60%, #b39ddb 100%);
+  width: 0%;
+  transition: width 0.6s cubic-bezier(.4, 2, .6, 1);
 }
 
 .progress-text {
@@ -260,41 +277,20 @@ button:hover {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 16px;
-  color: white;
+  font-size: 18px;
+  color: #fff;
   font-weight: bold;
+  text-shadow: 0 1px 4px rgba(123, 31, 162, 0.25);
+  letter-spacing: 0.5px;
 }
 
-/* Адаптация для мобильных устройств */
 @media (max-width: 600px) {
-  .input-group {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .input-group input {
-    margin-bottom: 10px;
-  }
-
-  .input-group button {
-    margin-left: 0;
-    width: 100%;
-  }
-
-  #weekTips h3 {
-    font-size: 16px;
-  }
-
-  #weekTips ul {
-    font-size: 14px;
-  }
-
   .progress-container {
-    height: 15px;
+    height: 20px;
   }
 
   .progress-text {
-    font-size: 14px;
+    font-size: 15px;
   }
 }
 
@@ -319,4 +315,28 @@ a:hover {
   color: red;
   font-size: 14px;
   margin-top: 10px;
+}
+
+.correction-label {
+  font-size: 14px;
+  color: #7b1fa2;
+  min-width: 120px;
+  margin-right: 8px;
+}
+
+.correction-input {
+  width: 80px;
+  padding: 8px;
+  border: 1px solid #b39ddb;
+  border-radius: 4px;
+  font-size: 16px;
+  background: #f3e5f5;
+  color: #333;
+  transition: border-color 0.3s;
+}
+
+.correction-input:focus {
+  border-color: #7b1fa2;
+  outline: none;
+  background: #ede7f6;
 }
