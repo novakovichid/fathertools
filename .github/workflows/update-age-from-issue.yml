@@ -1,0 +1,28 @@
+name: Update Child Age from Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  update-age:
+    if: github.event.issue.title == 'update-child-age'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Update child-age.json
+        run: |
+          echo "{\"age\": \"${{ github.event.issue.body }}\"}" > child-age.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add child-age.json
+          git commit -m "update: возраст ребёнка с сайта"
+          git push
+
+      - name: Close issue
+        uses: peter-evans/close-issue@v2 
