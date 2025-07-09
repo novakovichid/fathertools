@@ -114,12 +114,20 @@ document.addEventListener('DOMContentLoaded', () => {
                 let warning = '';
                 if (siteAge && data.age && siteAge !== data.age) {
                     warning = `\n\n⚠️ Совет сгенерирован для возраста: ${data.age}. Ваш возраст: ${siteAge}.`;
+                    showAdviceInstruction(siteAge);
+                } else {
+                    document.getElementById('advice-instruction').innerHTML = '';
                 }
                 adviceBlock.innerText = data.advice + warning;
             })
             .catch(() => {
                 document.getElementById('childAdvice').innerText = 'Совет временно недоступен.';
             });
+    }
+
+    function showAdviceInstruction(age) {
+        document.getElementById('advice-instruction').innerHTML =
+            `Для получения индивидуального совета <a href="https://github.com/novakovichid/fathertools/issues/new?title=update-child-age&body=${encodeURIComponent(age)}" target="_blank">создайте issue</a> с заголовком <b>update-child-age</b> и текстом: <b>${age}</b>.<br>Совет появится через 1-2 минуты.`;
     }
 
     // Показывать совет при загрузке и при изменении даты рождения
