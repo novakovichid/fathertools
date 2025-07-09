@@ -85,6 +85,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return res;
     }
 
+    function normalizeAge(str) {
+        return (str || '').replace(/[.]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    }
+
     saveChildDataButton.addEventListener('click', saveChildData);
     updateChildParamsButton.addEventListener('click', saveParamsOnly);
 
@@ -112,7 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 const adviceBlock = document.getElementById('childAdvice');
                 const siteAge = getChildAgeString();
                 let warning = '';
-                if (siteAge && data.age && siteAge !== data.age) {
+                console.log('siteAge:', siteAge, 'data.age:', data.age);
+                if (siteAge && data.age && normalizeAge(siteAge) !== normalizeAge(data.age)) {
                     warning = `\n\n⚠️ Совет сгенерирован для возраста: ${data.age}. Ваш возраст: ${siteAge}.`;
                     showAdviceInstruction(siteAge);
                 } else {
