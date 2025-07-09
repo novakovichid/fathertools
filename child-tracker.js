@@ -89,7 +89,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return (str || '').replace(/[.]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
     }
 
-    saveChildDataButton.addEventListener('click', saveChildData);
+    saveChildDataButton.addEventListener('click', () => {
+        saveChildData();
+        showAdvice();
+    });
     updateChildParamsButton.addEventListener('click', saveParamsOnly);
 
     renderChildData();
