@@ -118,11 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 const adviceBlock = document.getElementById('childAdvice');
                 const siteAge = getChildAgeString();
+                const birthDate = document.getElementById('birthDateInput').value;
                 let warning = '';
                 console.log('siteAge:', siteAge, 'data.age:', data.age);
                 if (siteAge && data.age && normalizeAge(siteAge) !== normalizeAge(data.age)) {
                     warning = `\n\n⚠️ Совет сгенерирован для возраста: ${data.age}. Ваш возраст: ${siteAge}.`;
-                    showAdviceInstruction(siteAge);
+                    showAdviceInstruction(birthDate);
                 } else {
                     document.getElementById('advice-instruction').innerHTML = '';
                 }
@@ -133,9 +134,9 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    function showAdviceInstruction(age) {
+    function showAdviceInstruction(birthDate) {
         document.getElementById('advice-instruction').innerHTML =
-            `Для получения индивидуального совета <a href="https://github.com/novakovichid/fathertools/issues/new?title=update-child-age&body=${encodeURIComponent(age)}" target="_blank">создайте issue</a> с заголовком <b>update-child-age</b> и текстом: <b>${age}</b>.<br>Совет появится через 1-2 минуты.`;
+            `Для получения индивидуального совета <a href="https://github.com/novakovichid/fathertools/issues/new?title=update-child-birthdate&body=${encodeURIComponent(birthDate)}" target="_blank">создайте issue</a> с заголовком <b>update-child-birthdate</b> и текстом: <b>${birthDate}</b>.<br>Совет появится через 1-2 минуты.`;
     }
 
     // Показывать совет при загрузке и при изменении даты рождения

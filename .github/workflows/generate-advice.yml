@@ -12,16 +12,27 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Read child age from file
-        id: read_age
+      - name: Read birth date from file and calculate age
+        id: get_age
         run: |
-          AGE=$(jq -r .age child-age.json)
+          BIRTH=$(jq -r .birthDate child-data.json)
+          NOW=$(date -u +%Y-%m-%d)
+          Y1=$(echo $BIRTH | cut -d- -f1)
+          M1=$(echo $BIRTH | cut -d- -f2)
+          D1=$(echo $BIRTH | cut -d- -f3)
+          Y2=$(echo $NOW | cut -d- -f1)
+          M2=$(echo $NOW | cut -d- -f2)
+          D2=$(echo $NOW | cut -d- -f3)
+          YEARS=$((Y2-Y1))
+          MONTHS=$((M2-M1))
+          if [ $MONTHS -lt 0 ]; then YEARS=$((YEARS-1)); MONTHS=$((MONTHS+12)); fi
+          AGE="$YEARS год$( [ $YEARS -eq 1 ] && echo '' || ([ $YEARS -ge 2 ] && [ $YEARS -le 4 ] && echo 'а' || ([ $YEARS -ge 5 ] && echo 'ов') ) ) ) $MONTHS месяца"
           echo "age=$AGE" >> $GITHUB_OUTPUT
 
       - name: Get child advice from OpenRouter
         id: get_advice
         run: |
-          AGE="${{ steps.read_age.outputs.age }}"
+          AGE="${{ steps.get_age.outputs.age }}"
           RESPONSE=$(curl -s -X POST "https://openrouter.ai/api/v1/chat/completions" \
             -H "Authorization: Bearer ${{ secrets.OPENROUTER_API_KEY }}" \
             -H "Content-Type: application/json" \
