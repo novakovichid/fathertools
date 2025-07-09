@@ -373,12 +373,6 @@ a:hover {
     box-sizing: border-box;
   }
 
-  .input-group button {
-    display: block;
-    margin: 0 auto !important;
-    width: 100% !important;
-  }
-
   .input-group input,
   .input-group button {
     width: 100%;
@@ -387,16 +381,31 @@ a:hover {
     font-size: 18px;
   }
 
+  .input-group button {
+    display: block;
+    margin: 0 auto !important;
+    width: 100% !important;
+    padding: 14px 8px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #ffeb3b;
+    color: #333;
+  }
+
   input[type="date"] {
     width: 100% !important;
     min-width: 0 !important;
     margin: 0 !important;
     box-sizing: border-box;
+    padding: 14px 8px !important;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 18px !important;
+    background: #fff;
+    color: #333;
   }
 
-  button,
-  .input-group button {
-    padding: 14px 0;
+  button {
     font-size: 18px;
   }
 
