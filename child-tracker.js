@@ -7,13 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const childAgeSpan = document.getElementById('childAge');
     const childWeightSpan = document.getElementById('childWeight');
     const childHeightSpan = document.getElementById('childHeight');
-    const childHeadCircumSpan = document.getElementById('childHeadCircum');
     const childLastCheckSpan = document.getElementById('childLastCheck');
     const childNotesSpan = document.getElementById('childNotes');
 
     const weightInput = document.getElementById('weightInput');
     const heightInput = document.getElementById('heightInput');
-    const headCircumInput = document.getElementById('headCircumInput');
     const lastCheckInput = document.getElementById('lastCheckInput');
     const notesInput = document.getElementById('notesInput');
     const updateChildParamsButton = document.getElementById('updateChildParams');
@@ -24,7 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
             birthDate: birthDateInput.value,
             weight: weightInput.value,
             height: heightInput.value,
-            headCircum: headCircumInput.value,
             lastCheck: lastCheckInput.value,
             notes: notesInput.value.trim()
         };
@@ -36,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = JSON.parse(localStorage.getItem('childData') || '{}');
         data.weight = weightInput.value;
         data.height = heightInput.value;
-        data.headCircum = headCircumInput.value;
         data.lastCheck = lastCheckInput.value;
         data.notes = notesInput.value.trim();
         localStorage.setItem('childData', JSON.stringify(data));
@@ -49,7 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
         childBirthDateSpan.textContent = data.birthDate || '-';
         childWeightSpan.textContent = data.weight || '-';
         childHeightSpan.textContent = data.height || '-';
-        childHeadCircumSpan.textContent = data.headCircum || '-';
         childLastCheckSpan.textContent = data.lastCheck || '-';
         childNotesSpan.textContent = data.notes || '-';
         // Возраст
@@ -63,7 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         birthDateInput.value = data.birthDate || '';
         weightInput.value = data.weight || '';
         heightInput.value = data.height || '';
-        headCircumInput.value = data.headCircum || '';
         lastCheckInput.value = data.lastCheck || '';
         notesInput.value = data.notes || '';
     }
