@@ -363,6 +363,7 @@ a:hover {
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 8px !important;
+    flex-wrap: nowrap !important;
   }
 
   .input-group>* {
