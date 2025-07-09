@@ -35,15 +35,7 @@
             <p><strong>Дата последнего осмотра:</strong> <span id="childLastCheck"></span></p>
             <p><strong>Заметки:</strong> <span id="childNotes"></span></p>
         </section>
-        <section>
-            <h2>Совет дня</h2>
-            <div id="advice"
-                style="background: #f3e5f5; color: #7b1fa2; border-radius: 6px; padding: 12px; margin-top: 8px; min-height: 40px;">
-            </div>
-            <button
-                onclick="window.open('https://github.com/novakovichid/fathertools/actions/workflows/generate-advice.yml', '_blank')"
-                style="margin-top: 10px;">Обновить совет вручную (требует прав)</button>
-        </section>
+        <!-- Удалена секция с советом дня и кнопкой обновления -->
         <section>
             <h2>Обновить параметры</h2>
             <label for="weightInput">Вес (кг)</label>
@@ -66,7 +58,6 @@
                 <button id="updateChildParams">Обновить</button>
             </div>
         </section>
-        <!-- Удалена секция с советом по возрасту ребёнка -->
     </main>
     <script src="child-tracker.js"></script>
 </body>
