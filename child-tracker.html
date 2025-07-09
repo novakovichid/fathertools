@@ -15,11 +15,11 @@
     </header>
     <main>
         <section>
-            <label for="childNameInput">Имя ребёнка:</label>
+            <label for="childNameInput">Имя ребёнка</label>
             <div class="input-group">
                 <input type="text" id="childNameInput" placeholder="Например: Маша">
             </div>
-            <label for="birthDateInput">Дата рождения:</label>
+            <label for="birthDateInput">Дата рождения</label>
             <div class="input-group">
                 <input type="date" id="birthDateInput" placeholder="Дата рождения">
                 <button id="saveChildData">Сохранить</button>
@@ -37,11 +37,21 @@
         </section>
         <section>
             <h2>Обновить параметры</h2>
+            <label for="weightInput">Вес (кг)</label>
             <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
                 <input type="number" id="weightInput" placeholder="Вес (кг), например: 8.5" min="0" step="0.01">
+            </div>
+            <label for="heightInput">Рост (см)</label>
+            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
                 <input type="number" id="heightInput" placeholder="Рост (см), например: 72.3" min="0" step="0.1">
+            </div>
+            <label for="lastCheckInput">Дата последнего осмотра</label>
+            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
                 <input type="date" id="lastCheckInput" placeholder="Дата осмотра, например: 2024-06-01">
                 <small style="color: #888; margin-bottom: 4px;">Дата последнего осмотра у врача или дома</small>
+            </div>
+            <label for="notesInput">Заметки</label>
+            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
                 <input type="text" id="notesInput" placeholder="Заметки, например: режутся зубы, был насморк...">
                 <small style="color: #888; margin-bottom: 4px;">Любые важные события, самочувствие, достижения</small>
                 <button id="updateChildParams">Обновить</button>
