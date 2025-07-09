@@ -17,7 +17,7 @@
         <section>
             <label for="childNameInput">Имя ребёнка:</label>
             <div class="input-group">
-                <input type="text" id="childNameInput" placeholder="Введите имя">
+                <input type="text" id="childNameInput" placeholder="Например: Маша">
             </div>
             <label for="birthDateInput">Дата рождения:</label>
             <div class="input-group">
@@ -39,12 +39,23 @@
         <section>
             <h2>Обновить параметры</h2>
             <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
-                <input type="number" id="weightInput" placeholder="Вес (кг)" min="0" step="0.01">
-                <input type="number" id="heightInput" placeholder="Рост (см)" min="0" step="0.1">
-                <input type="number" id="headCircumInput" placeholder="Окружность головы (см)" min="0" step="0.1">
-                <input type="date" id="lastCheckInput" placeholder="Дата осмотра">
-                <input type="text" id="notesInput" placeholder="Заметки">
+                <input type="number" id="weightInput" placeholder="Вес (кг), например: 8.5" min="0" step="0.01">
+                <input type="number" id="heightInput" placeholder="Рост (см), например: 72.3" min="0" step="0.1">
+                <input type="number" id="headCircumInput" placeholder="Окружность головы (см), например: 44.2" min="0"
+                    step="0.1">
+                <small style="color: #888; margin-bottom: 4px;">Окружность головы — по желанию, если измеряли</small>
+                <input type="date" id="lastCheckInput" placeholder="Дата осмотра, например: 2024-06-01">
+                <small style="color: #888; margin-bottom: 4px;">Дата последнего осмотра у врача или дома</small>
+                <input type="text" id="notesInput" placeholder="Заметки, например: режутся зубы, был насморк...">
+                <small style="color: #888; margin-bottom: 4px;">Любые важные события, самочувствие, достижения</small>
                 <button id="updateChildParams">Обновить</button>
+            </div>
+        </section>
+        <section>
+            <h2>Совет по возрасту ребёнка</h2>
+            <div id="childAdvice"
+                style="background: #f3e5f5; color: #7b1fa2; border-radius: 6px; padding: 12px; margin-top: 8px;">
+                <em>Здесь будет случайный совет, подходящий для возраста вашего ребёнка.</em>
             </div>
         </section>
     </main>
