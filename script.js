@@ -27,6 +27,15 @@ function initTracker() {
   // Удаляю все упоминания nutritionTipsElement и updateNutritionTips
   const weekTipsElement = document.getElementById('weekTips');
   const correctionDaysInput = document.getElementById('correctionDaysInput');
+  const birthHappenedCheckbox = document.getElementById('birthHappenedCheckbox');
+  let birthHappened = localStorage.getItem('birthHappened') === 'true';
+  if (birthHappenedCheckbox) birthHappenedCheckbox.checked = birthHappened;
+
+  birthHappenedCheckbox?.addEventListener('change', () => {
+    birthHappened = birthHappenedCheckbox.checked;
+    localStorage.setItem('birthHappened', birthHappened);
+    updateCalculations();
+  });
 
   // Прогресс-бар
   const progressBar = document.getElementById('pregnancyProgressBar');
@@ -69,6 +78,15 @@ function initTracker() {
 
   function updateCalculations() {
     if (!startDate) return;
+    if (birthHappened) {
+      pdrElement.textContent = '-';
+      currentWeekElement.textContent = '-';
+      exactDurationElement.textContent = 'Беременность завершена';
+      progressBar.style.width = '100%';
+      progressText.textContent = 'Роды состоялись!';
+      updateWeekTips(40);
+      return;
+    }
     const start = getCorrectedStartDate();
     const today = new Date();
     const pdr = new Date(start.getTime() + 280 * 24 * 60 * 60 * 1000);

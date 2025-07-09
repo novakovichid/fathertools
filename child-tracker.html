@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Трекер ребёнка</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <h1>Трекер ребёнка</h1>
+        <a href="index.html" class="back-button">← Назад в меню</a>
+    </header>
+    <main>
+        <section>
+            <label for="childNameInput">Имя ребёнка:</label>
+            <div class="input-group">
+                <input type="text" id="childNameInput" placeholder="Введите имя">
+            </div>
+            <label for="birthDateInput">Дата рождения:</label>
+            <div class="input-group">
+                <input type="date" id="birthDateInput" placeholder="Дата рождения">
+                <button id="saveChildData">Сохранить</button>
+            </div>
+        </section>
+        <section>
+            <h2>Текущая информация</h2>
+            <p><strong>Имя:</strong> <span id="childName"></span></p>
+            <p><strong>Дата рождения:</strong> <span id="childBirthDate"></span></p>
+            <p><strong>Возраст:</strong> <span id="childAge"></span></p>
+            <p><strong>Текущий вес (кг):</strong> <span id="childWeight"></span></p>
+            <p><strong>Рост (см):</strong> <span id="childHeight"></span></p>
+            <p><strong>Окружность головы (см):</strong> <span id="childHeadCircum"></span></p>
+            <p><strong>Дата последнего осмотра:</strong> <span id="childLastCheck"></span></p>
+            <p><strong>Заметки:</strong> <span id="childNotes"></span></p>
+        </section>
+        <section>
+            <h2>Обновить параметры</h2>
+            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
+                <input type="number" id="weightInput" placeholder="Вес (кг)" min="0" step="0.01">
+                <input type="number" id="heightInput" placeholder="Рост (см)" min="0" step="0.1">
+                <input type="number" id="headCircumInput" placeholder="Окружность головы (см)" min="0" step="0.1">
+                <input type="date" id="lastCheckInput" placeholder="Дата осмотра">
+                <input type="text" id="notesInput" placeholder="Заметки">
+                <button id="updateChildParams">Обновить</button>
+            </div>
+        </section>
+    </main>
+    <script src="child-tracker.js"></script>
+</body>
+
+</html>
