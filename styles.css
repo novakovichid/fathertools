@@ -365,6 +365,20 @@ a:hover {
     gap: 8px !important;
   }
 
+  .input-group>* {
+    width: 100% !important;
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    box-sizing: border-box;
+  }
+
+  .input-group button {
+    display: block;
+    margin: 0 auto !important;
+    width: 100% !important;
+  }
+
   .input-group input,
   .input-group button {
     width: 100%;
