@@ -97,4 +97,17 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChildData();
 
     // Удалён весь функционал советов по возрасту ребёнка
+
+    // Загрузка и отображение совета дня
+    function showDailyAdvice() {
+        fetch('https://raw.githubusercontent.com/novakovichid/fathertools/main/child-advice.json')
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('advice').innerText = data.advice || 'Совет дня временно недоступен.';
+            })
+            .catch(() => {
+                document.getElementById('advice').innerText = 'Совет дня временно недоступен.';
+            });
+    }
+    showDailyAdvice();
 }); 

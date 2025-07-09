@@ -1,9 +1,9 @@
-name: Generate Child Advice
+name: Generate Daily Advice
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 * * * *' # каждый час
+    - cron: '1 0 * * *' # каждый день в 00:01 UTC
+  workflow_dispatch:
 
 jobs:
   generate-advice:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Read birth date from file and calculate age
+      - name: Read birth date and calculate age
         id: get_age
         run: |
           BIRTH=$(jq -r .birthDate child-data.json)
@@ -29,26 +29,27 @@ jobs:
           AGE="$YEARS год$( [ $YEARS -eq 1 ] && echo '' || ([ $YEARS -ge 2 ] && [ $YEARS -le 4 ] && echo 'а' || ([ $YEARS -ge 5 ] && echo 'ов') ) ) ) $MONTHS месяца"
           echo "age=$AGE" >> $GITHUB_OUTPUT
 
-      - name: Get child advice from OpenRouter
+      - name: Get daily advice from OpenRouter
         id: get_advice
         run: |
           AGE="${{ steps.get_age.outputs.age }}"
+          DAY=$(date -u +%Y-%m-%d)
           RESPONSE=$(curl -s -X POST "https://openrouter.ai/api/v1/chat/completions" \
             -H "Authorization: Bearer ${{ secrets.OPENROUTER_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{
                   "model": "openai/gpt-3.5-turbo",
                   "messages": [
-                    {"role": "system", "content": "Ты заботливый детский врач. Дай короткий полезный совет для родителей ребёнка возраста '"$AGE"'."}
+                    {"role": "system", "content": "Ты заботливый детский врач. Дай короткий полезный совет для родителей ребёнка возраста '"$AGE"' на дату '"$DAY"'."}
                   ]
                 }')
           ADVICE=$(echo "$RESPONSE" | jq -r '.choices[0].message.content')
-          echo "{\"advice\": \"$ADVICE\", \"age\": \"$AGE\", \"updated\": \"$(date -u +"%Y-%m-%dT%H:%M:%SZ")\"}" > child-advice.json
+          echo "{\"advice\": \"$ADVICE\", \"age\": \"$AGE\", \"date\": \"$DAY\"}" > child-advice.json
 
       - name: Commit and push advice
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add child-advice.json
-          git commit -m "update: совет для возраста $AGE"
+          git commit -m "update: совет дня $DAY"
           git push 
