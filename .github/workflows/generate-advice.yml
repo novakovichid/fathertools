@@ -2,11 +2,8 @@ name: Generate Child Advice
 
 on:
   workflow_dispatch:
-    inputs:
-      age:
-        description: 'Возраст ребёнка (например: 1 год 2 месяца)'
-        required: true
-        default: '1 год 2 месяца'
+  schedule:
+    - cron: '0 * * * *' # каждый час
 
 jobs:
   generate-advice:
@@ -15,10 +12,16 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Read child age from file
+        id: read_age
+        run: |
+          AGE=$(jq -r .age child-age.json)
+          echo "age=$AGE" >> $GITHUB_OUTPUT
+
       - name: Get child advice from OpenRouter
         id: get_advice
         run: |
-          AGE="${{ github.event.inputs.age }}"
+          AGE="${{ steps.read_age.outputs.age }}"
           RESPONSE=$(curl -s -X POST "https://openrouter.ai/api/v1/chat/completions" \
             -H "Authorization: Bearer ${{ secrets.OPENROUTER_API_KEY }}" \
             -H "Content-Type: application/json" \

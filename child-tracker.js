@@ -91,12 +91,38 @@ document.addEventListener('DOMContentLoaded', () => {
     renderChildData();
 
     // Загрузка совета из child-advice.json
-    fetch('https://raw.githubusercontent.com/novakovichid/fathertools/main/child-advice.json')
-        .then(res => res.json())
-        .then(data => {
-            document.getElementById('childAdvice').innerText = data.advice;
-        })
-        .catch(() => {
-            document.getElementById('childAdvice').innerText = 'Совет временно недоступен.';
-        });
+    function getChildAgeString() {
+        const birth = document.getElementById('birthDateInput').value;
+        if (!birth) return '';
+        const now = new Date();
+        const b = new Date(birth);
+        let years = now.getFullYear() - b.getFullYear();
+        let months = now.getMonth() - b.getMonth();
+        if (months < 0) { years--; months += 12; }
+        let ageStr = '';
+        if (years > 0) ageStr += years + ' год' + (years > 1 && years < 5 ? 'а' : years > 4 ? 'ов' : '') + ' ';
+        if (months > 0) ageStr += months + ' мес.';
+        return ageStr.trim();
+    }
+
+    function showAdvice() {
+        fetch('https://raw.githubusercontent.com/novakovichid/fathertools/main/child-advice.json')
+            .then(res => res.json())
+            .then(data => {
+                const adviceBlock = document.getElementById('childAdvice');
+                const siteAge = getChildAgeString();
+                let warning = '';
+                if (siteAge && data.age && siteAge !== data.age) {
+                    warning = `\n\n⚠️ Совет сгенерирован для возраста: ${data.age}. Ваш возраст: ${siteAge}.`;
+                }
+                adviceBlock.innerText = data.advice + warning;
+            })
+            .catch(() => {
+                document.getElementById('childAdvice').innerText = 'Совет временно недоступен.';
+            });
+    }
+
+    // Показывать совет при загрузке и при изменении даты рождения
+    showAdvice();
+    document.getElementById('birthDateInput').addEventListener('change', showAdvice);
 }); 
