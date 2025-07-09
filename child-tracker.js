@@ -89,4 +89,14 @@ document.addEventListener('DOMContentLoaded', () => {
     updateChildParamsButton.addEventListener('click', saveParamsOnly);
 
     renderChildData();
+
+    // Загрузка совета из child-advice.json
+    fetch('https://raw.githubusercontent.com/novakovichid/fathertools/main/child-advice.json')
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById('childAdvice').innerText = data.advice;
+        })
+        .catch(() => {
+            document.getElementById('childAdvice').innerText = 'Совет временно недоступен.';
+        });
 }); 
