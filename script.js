@@ -24,7 +24,7 @@ function initTracker() {
   const customDayInput = document.getElementById('customDayInput');
   const calculateForWeeksButton = document.getElementById('calculateForWeeks');
   const customWeekResultElement = document.getElementById('customWeekResult');
-  const nutritionTipsElement = document.getElementById('nutritionTips');
+  // Удаляю все упоминания nutritionTipsElement и updateNutritionTips
   const weekTipsElement = document.getElementById('weekTips');
   const correctionDaysInput = document.getElementById('correctionDaysInput');
 
@@ -87,9 +87,6 @@ function initTracker() {
 
     // Обновление советов для текущей недели
     updateWeekTips(weeks);
-
-    // Обновление рекомендаций по питанию
-    updateNutritionTips(diffDays);
   }
 
   function updateProgressBar(weeks) {
@@ -119,37 +116,6 @@ function initTracker() {
       <h3>Советы:</h3>
       <ul>${tipsInfo}</ul>
     `;
-  }
-
-  async function updateNutritionTips(day) {
-    const week = parseInt(currentWeekElement.textContent) || 1;
-    const apiKey = window.OPENROUTER_API_KEY;
-    if (!apiKey) {
-      nutritionTipsElement.textContent = 'Нет API-ключа OpenRouter. Укажите ключ в script.js.';
-      return;
-    }
-    nutritionTipsElement.textContent = 'Загрузка совета...';
-    try {
-      const prompt = `Ты — заботливый врач-диетолог. Дай очень короткий совет по питанию для беременной на ${week}-й неделе беременности. Не повторяйся.`;
-      const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: 'openai/gpt-3.5-turbo',
-          messages: [{ role: 'user', content: prompt }],
-          max_tokens: 50,
-          temperature: 0.7
-        })
-      });
-      const data = await response.json();
-      const tip = data.choices?.[0]?.message?.content?.trim();
-      nutritionTipsElement.textContent = tip || 'Совет не получен.';
-    } catch (e) {
-      nutritionTipsElement.textContent = 'Ошибка получения совета.';
-    }
   }
 
   calculateForDateButton.addEventListener('click', () => {
