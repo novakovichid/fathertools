@@ -24,7 +24,6 @@ function initTracker() {
   const customDayInput = document.getElementById('customDayInput');
   const calculateForWeeksButton = document.getElementById('calculateForWeeks');
   const customWeekResultElement = document.getElementById('customWeekResult');
-  // Удаляю все упоминания nutritionTipsElement и updateNutritionTips
   const weekTipsElement = document.getElementById('weekTips');
   const correctionDaysInput = document.getElementById('correctionDaysInput');
   const birthHappenedCheckbox = document.getElementById('birthHappenedCheckbox');
@@ -116,9 +115,10 @@ function initTracker() {
 
   function updateProgressBar(weeks) {
     const totalWeeks = 40; // Общее количество недель беременности
-    const progressPercentage = (weeks / totalWeeks) * 100;
+    const clampedWeeks = Math.min(weeks, totalWeeks);
+    const progressPercentage = (clampedWeeks / totalWeeks) * 100;
     progressBar.style.width = `${progressPercentage}%`;
-    progressText.textContent = `${weeks} неделя • ${progressPercentage.toFixed(0)}%`;
+    progressText.textContent = `${clampedWeeks} неделя • ${progressPercentage.toFixed(0)}%`;
   }
 
   function updateWeekTips(week) {
