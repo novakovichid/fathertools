@@ -1,4 +1,31 @@
-document.addEventListener('DOMContentLoaded', () => {
+function getAgeString(birthDateStr) {
+    const birth = new Date(birthDateStr);
+    const now = new Date();
+    if (birth > now) {
+        return '0 дн. (всего 0 дней)';
+    }
+    let years = now.getFullYear() - birth.getFullYear();
+    let months = now.getMonth() - birth.getMonth();
+    let days = now.getDate() - birth.getDate();
+    if (days < 0) {
+        months--;
+        days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+    const totalDays = Math.floor((now - birth) / (1000 * 60 * 60 * 24));
+    let res = '';
+    if (years > 0) res += years + ' г. ';
+    if (months > 0) res += months + ' мес. ';
+    res += days + ' дн.';
+    res += ` (всего ${totalDays} дней)`;
+    return res;
+}
+
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
     const childNameInput = document.getElementById('childNameInput');
     const birthDateInput = document.getElementById('birthDateInput');
     const saveChildDataButton = document.getElementById('saveChildData');
@@ -62,29 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
         notesInput.value = data.notes || '';
     }
 
-    function getAgeString(birthDateStr) {
-        const birth = new Date(birthDateStr);
-        const now = new Date();
-        let years = now.getFullYear() - birth.getFullYear();
-        let months = now.getMonth() - birth.getMonth();
-        let days = now.getDate() - birth.getDate();
-        if (days < 0) {
-            months--;
-            days += new Date(now.getFullYear(), now.getMonth(), 0).getDate();
-        }
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
-        const totalDays = Math.floor((now - birth) / (1000 * 60 * 60 * 24));
-        let res = '';
-        if (years > 0) res += years + ' г. ';
-        if (months > 0) res += months + ' мес. ';
-        res += days + ' дн.';
-        res += ` (всего ${totalDays} дней)`;
-        return res;
-    }
-
     function normalizeAge(str) {
         return (str || '').replace(/[.]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
     }
@@ -99,4 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Удалён весь функционал советов по возрасту ребёнка
 
     // Удалена функция showDailyAdvice и её вызов
-}); 
+  });
+}
+
+if (typeof module !== 'undefined') {
+    module.exports = { getAgeString };
+}
