@@ -14,7 +14,8 @@
         <a href="index.html" class="back-button">← Назад в меню</a>
     </header>
     <main>
-        <section>
+        <section class="child-profile">
+            <h2>Профиль ребёнка</h2>
             <label for="childNameInput">Имя ребёнка</label>
             <div class="input-group">
                 <input type="text" id="childNameInput" placeholder="Например: Маша">
@@ -25,7 +26,7 @@
                 <button id="saveChildData">Сохранить</button>
             </div>
         </section>
-        <section>
+        <section class="current-info">
             <h2>Текущая информация</h2>
             <p><strong>Имя:</strong> <span id="childName"></span></p>
             <p><strong>Дата рождения:</strong> <span id="childBirthDate"></span></p>
@@ -35,28 +36,39 @@
             <p><strong>Дата последнего осмотра:</strong> <span id="childLastCheck"></span></p>
             <p><strong>Заметки:</strong> <span id="childNotes"></span></p>
         </section>
-        <!-- Удалена секция с советом дня и кнопкой обновления -->
-        <section>
-            <h2>Обновить параметры</h2>
+        <section class="add-record">
+            <h2>Добавить запись</h2>
+            <label for="lastCheckInput">Дата</label>
+            <div class="input-group">
+                <input type="date" id="lastCheckInput" placeholder="Дата, например: 2024-06-01">
+            </div>
             <label for="weightInput">Вес (кг)</label>
-            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
+            <div class="input-group">
                 <input type="number" id="weightInput" placeholder="Вес (кг), например: 8.5" min="0" step="0.01">
             </div>
             <label for="heightInput">Рост (см)</label>
-            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
+            <div class="input-group">
                 <input type="number" id="heightInput" placeholder="Рост (см), например: 72.3" min="0" step="0.1">
             </div>
-            <label for="lastCheckInput">Дата последнего осмотра</label>
-            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
-                <input type="date" id="lastCheckInput" placeholder="Дата осмотра, например: 2024-06-01">
-                <small style="color: #888; margin-bottom: 4px;">Дата последнего осмотра у врача или дома</small>
-            </div>
             <label for="notesInput">Заметки</label>
-            <div class="input-group" style="gap: 8px; flex-wrap: wrap;">
+            <div class="input-group">
                 <input type="text" id="notesInput" placeholder="Заметки, например: режутся зубы, был насморк...">
-                <small style="color: #888; margin-bottom: 4px;">Любые важные события, самочувствие, достижения</small>
-                <button id="updateChildParams">Обновить</button>
+                <button id="addMeasurement">Добавить</button>
             </div>
+        </section>
+        <section class="history">
+            <h2>История измерений</h2>
+            <table id="historyTable" class="history-table">
+                <thead>
+                    <tr>
+                        <th>Дата</th>
+                        <th>Вес (кг)</th>
+                        <th>Рост (см)</th>
+                        <th>Заметки</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
         </section>
     </main>
     <script src="child-tracker.js"></script>

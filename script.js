@@ -91,8 +91,15 @@ function initTracker() {
     const pdr = new Date(start.getTime() + 280 * 24 * 60 * 60 * 1000);
     pdrElement.textContent = formatDate(pdr);
 
-    const diffTime = Math.abs(today - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffTime = today - start;
+    if (diffTime < 0) {
+      currentWeekElement.textContent = '0 неделя';
+      exactDurationElement.textContent = 'Беременность ещё не началась';
+      updateProgressBar(0);
+      weekTipsElement.innerHTML = '<p>Беременность ещё не началась.</p>';
+      return;
+    }
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const weeks = Math.floor(diffDays / 7) + 1;
     const days = diffDays % 7;
 
@@ -145,8 +152,12 @@ function initTracker() {
 
     const date = new Date(customDate);
     const start = getCorrectedStartDate();
-    const diffTime = Math.abs(date - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    const diffTime = date - start;
+    if (diffTime < 0) {
+      alert('Указанная дата раньше начала беременности.');
+      return;
+    }
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
     const weeks = Math.floor(diffDays / 7) + 1;
     const days = diffDays % 7;
 
