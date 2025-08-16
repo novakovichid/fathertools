@@ -7,7 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // --- ВСТАВЬТЕ СВОЙ КЛЮЧ OpenRouter НИЖЕ ---
-window.OPENROUTER_API_KEY = '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';
+// Оставьте пустым или используйте безопасный способ загрузки ключа в рантайме.
+window.OPENROUTER_API_KEY = '';
 // ------------------------------------------
 
 // Инициализация трекера беременности
