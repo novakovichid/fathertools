@@ -14,52 +14,60 @@ document.addEventListener('DOMContentLoaded', () => {
     const heightInput = document.getElementById('heightInput');
     const lastCheckInput = document.getElementById('lastCheckInput');
     const notesInput = document.getElementById('notesInput');
-    const updateChildParamsButton = document.getElementById('updateChildParams');
+    const addMeasurementButton = document.getElementById('addMeasurement');
 
     function saveChildData() {
-        const data = {
-            name: childNameInput.value.trim(),
-            birthDate: birthDateInput.value,
-            weight: weightInput.value,
-            height: heightInput.value,
-            lastCheck: lastCheckInput.value,
-            notes: notesInput.value.trim()
-        };
+        const data = JSON.parse(localStorage.getItem('childData') || '{}');
+        data.name = childNameInput.value.trim();
+        data.birthDate = birthDateInput.value;
         localStorage.setItem('childData', JSON.stringify(data));
         renderChildData();
     }
 
-    function saveParamsOnly() {
+    function addMeasurement() {
         const data = JSON.parse(localStorage.getItem('childData') || '{}');
-        data.weight = weightInput.value;
-        data.height = heightInput.value;
-        data.lastCheck = lastCheckInput.value;
-        data.notes = notesInput.value.trim();
+        const measurement = {
+            date: lastCheckInput.value,
+            weight: weightInput.value,
+            height: heightInput.value,
+            notes: notesInput.value.trim()
+        };
+        data.measurements = data.measurements || [];
+        data.measurements.push(measurement);
         localStorage.setItem('childData', JSON.stringify(data));
         renderChildData();
+        weightInput.value = '';
+        heightInput.value = '';
+        lastCheckInput.value = '';
+        notesInput.value = '';
     }
 
     function renderChildData() {
         const data = JSON.parse(localStorage.getItem('childData') || '{}');
         childNameSpan.textContent = data.name || '-';
         childBirthDateSpan.textContent = data.birthDate || '-';
-        childWeightSpan.textContent = data.weight || '-';
-        childHeightSpan.textContent = data.height || '-';
-        childLastCheckSpan.textContent = data.lastCheck || '-';
-        childNotesSpan.textContent = data.notes || '-';
-        // Возраст
+
+        const measurements = data.measurements || [];
+        const last = measurements[measurements.length - 1] || {};
+        childWeightSpan.textContent = last.weight || '-';
+        childHeightSpan.textContent = last.height || '-';
+        childLastCheckSpan.textContent = last.date || '-';
+        childNotesSpan.textContent = last.notes || '-';
+
         if (data.birthDate) {
             childAgeSpan.textContent = getAgeString(data.birthDate);
         } else {
             childAgeSpan.textContent = '-';
         }
-        // Подставить значения в инпуты
+
         childNameInput.value = data.name || '';
         birthDateInput.value = data.birthDate || '';
-        weightInput.value = data.weight || '';
-        heightInput.value = data.height || '';
-        lastCheckInput.value = data.lastCheck || '';
-        notesInput.value = data.notes || '';
+        weightInput.value = '';
+        heightInput.value = '';
+        lastCheckInput.value = '';
+        notesInput.value = '';
+
+        renderHistoryTable(measurements);
     }
 
     function getAgeString(birthDateStr) {
@@ -85,18 +93,23 @@ document.addEventListener('DOMContentLoaded', () => {
         return res;
     }
 
-    function normalizeAge(str) {
-        return (str || '').replace(/[.]/g, '').replace(/\s+/g, ' ').trim().toLowerCase();
+    function renderHistoryTable(measurements) {
+        const tbody = document.querySelector('#historyTable tbody');
+        if (!tbody) return;
+        tbody.innerHTML = '';
+        measurements.forEach(m => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${m.date || '-'}</td><td>${m.weight || '-'}</td><td>${m.height || '-'}</td><td>${m.notes || '-'}</td>`;
+            tbody.appendChild(tr);
+        });
     }
 
-    saveChildDataButton.addEventListener('click', () => {
-        saveChildData();
-    });
-    updateChildParamsButton.addEventListener('click', saveParamsOnly);
+    saveChildDataButton.addEventListener('click', saveChildData);
+    addMeasurementButton.addEventListener('click', addMeasurement);
 
     renderChildData();
 
     // Удалён весь функционал советов по возрасту ребёнка
 
     // Удалена функция showDailyAdvice и её вызов
-}); 
+});

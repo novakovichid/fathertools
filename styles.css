@@ -7,6 +7,38 @@ body {
   color: #333;
 }
 
+section {
+  margin-bottom: 30px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.history-table th,
+.history-table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+
+.history-table th {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.history-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
 header {
   background-color: #7b1fa2;
   color: white;
@@ -214,6 +246,8 @@ button:hover {
   display: flex;
   align-items: center;
   margin-bottom: 15px;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .input-group input {
